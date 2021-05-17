@@ -1,0 +1,3 @@
+Plat.Foto -> MediumBlob(<=16MB)? Base64(STRING)?
+
+Plat."Escandall" > 1? 
