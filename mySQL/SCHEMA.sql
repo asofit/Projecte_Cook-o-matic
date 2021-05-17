@@ -1,5 +1,4 @@
 -- Creació de l'esquema, per si encara no el tenim o l'hem esborrat
-DROP SCHEMA IF EXISTS COOK_O_MATIC_BD;
 CREATE SCHEMA COOK_O_MATIC_BD;
 USE COOK_O_MATIC_BD;
 
@@ -87,7 +86,7 @@ CREATE TABLE COMANDES (
 
 ALTER TABLE TAULES ADD CONSTRAINT `TAULES_FK_COMANDES` FOREIGN KEY (COMANDA_ACTIVA) REFERENCES COMANDES (COMANDA_ID);
 
--- Per últim, creem la taula per les línies de comanda, que referencien "PLATS" i "COMANDES"
+-- Per últim, creem la taula per les línies de comanda, que referencia "PLATS" i "COMANDES"
 CREATE TABLE LINIES_COMANDA (
 	LINIA_COM_ID   	SMALLINT(2) 	CHECK ( LINIA_COM_ID >= 0 AND LINIA_COM_ID < 99),   
 	COMANDA			MEDIUMINT(7)	NOT NULL,
