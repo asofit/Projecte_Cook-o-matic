@@ -63,3 +63,69 @@ D:\Documents\DAM2\PROJ\Projecte_Cook-o-matic\Gestió de carta i mural per la cui
 D:\Documents\DAM2\PROJ\Projecte_Cook-o-matic\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\UIPlat.g.cs
 D:\Documents\DAM2\PROJ\Projecte_Cook-o-matic\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\UIPlat.xaml
 D:\Documents\DAM2\PROJ\Projecte_Cook-o-matic\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\UIPlat.xbf
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\bin\x64\Debug\App.xbf
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\bin\x64\Debug\View\CartaPage.xbf
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\bin\x64\Debug\View\MainPage.xbf
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\bin\x64\Debug\View\MuralPage.xbf
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\bin\x64\Debug\View\UICategoria.xbf
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\bin\x64\Debug\View\UIPlat.xbf
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\bin\x64\Debug\Carta i Mural.xr.xml
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\bin\x64\Debug\Carta i Mural.exe
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\bin\x64\Debug\Carta i Mural.pdb
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\bin\x64\Debug\resources.pri
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\bin\x64\Debug\AppxManifest.xml
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\bin\x64\Debug\Core\AppxManifest.xml
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\bin\x64\Debug\Core\Carta i Mural.exe
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\bin\x64\Debug\Carta i Mural.build.appxrecipe
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\bin\x64\Debug\System.Runtime.dll
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\bin\x64\Debug\Microsoft.UI.Xaml.Markup.winmd
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\Carta i Mural.csprojAssemblyReference.cache
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\App.g.i.cs
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\App.g.cs
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\CartaPage.g.i.cs
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\CartaPage.g.cs
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\MainPage.g.i.cs
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\MainPage.g.cs
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\MuralPage.g.i.cs
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\MuralPage.g.cs
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\UICategoria.g.i.cs
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\UICategoria.g.cs
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\UIPlat.g.i.cs
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\UIPlat.g.cs
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\XamlTypeInfo.g.cs
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\App.xaml
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\CartaPage.xaml
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\MainPage.xaml
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\MuralPage.xaml
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\UICategoria.xaml
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\UIPlat.xaml
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\App.xbf
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\CartaPage.xbf
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\MainPage.xbf
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\MuralPage.xbf
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\UICategoria.xbf
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\UIPlat.xbf
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\XamlSaveStateFile.xml
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\Carta i Mural.csproj.CoreCompileInputs.cache
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\Carta i Mural.csproj.CopyComplete
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\Carta i Mural.exe
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\Carta i Mural.pdb
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\ResourceHandlingTask.state
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\priconfig.xml
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\priconfig.xml.intermediate
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\unfiltered.layout.resfiles
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\unfiltered.layout.resfiles.intermediate
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\filtered.layout.resfiles
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\filtered.layout.resfiles.intermediate
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\excluded.layout.resfiles
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\excluded.layout.resfiles.intermediate
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\resources.resfiles
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\resources.resfiles.intermediate
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\pri.resfiles
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\pri.resfiles.intermediate
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\qualifiers.txt
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\qualifiers.txt.intermediate
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\MultipleQualifiersPerDimensionFound.txt
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\ProjectArchitectures.txt
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_636885274160000000.json
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_637424743200000000.json

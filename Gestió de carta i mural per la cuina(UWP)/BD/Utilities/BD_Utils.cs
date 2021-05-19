@@ -20,6 +20,7 @@ namespace BD.Utilities
             param.Value = valor;
             param.DbType = tipus;
             consulta.Parameters.Add(param);
+            
         }
 
         public static void Llegeix(DbDataReader reader, out int valor, string nomColumna, int valorPerDefecte = -1)

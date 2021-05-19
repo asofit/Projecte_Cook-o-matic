@@ -1,24 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documents\\DAM2\\PROJ\\Projecte_Cook-o-matic\\Gestió de carta i mural per la cuina(UWP)\\Carta i Mural\\Carta i Mural.csproj": {}
+    "D:\\Documents\\DAM2\\Projecte\\Gestió de carta i mural per la cuina(UWP)\\Carta i Mural\\Carta i Mural.csproj": {}
   },
   "projects": {
-    "D:\\Documents\\DAM2\\PROJ\\Projecte_Cook-o-matic\\Gestió de carta i mural per la cuina(UWP)\\Carta i Mural\\Carta i Mural.csproj": {
+    "D:\\Documents\\DAM2\\Projecte\\Gestió de carta i mural per la cuina(UWP)\\Carta i Mural\\Carta i Mural.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\DAM2\\PROJ\\Projecte_Cook-o-matic\\Gestió de carta i mural per la cuina(UWP)\\Carta i Mural\\Carta i Mural.csproj",
+        "projectUniqueName": "D:\\Documents\\DAM2\\Projecte\\Gestió de carta i mural per la cuina(UWP)\\Carta i Mural\\Carta i Mural.csproj",
         "projectName": "Carta i Mural",
-        "projectPath": "D:\\Documents\\DAM2\\PROJ\\Projecte_Cook-o-matic\\Gestió de carta i mural per la cuina(UWP)\\Carta i Mural\\Carta i Mural.csproj",
-        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\DAM2\\PROJ\\Projecte_Cook-o-matic\\Gestió de carta i mural per la cuina(UWP)\\Carta i Mural\\obj\\",
+        "projectPath": "D:\\Documents\\DAM2\\Projecte\\Gestió de carta i mural per la cuina(UWP)\\Carta i Mural\\Carta i Mural.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "D:\\Documents\\DAM2\\Projecte\\Gestió de carta i mural per la cuina(UWP)\\Carta i Mural\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

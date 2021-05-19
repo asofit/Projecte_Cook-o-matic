@@ -1,3 +1,4 @@
+WinMetadata\Windows.winmd
 Assets\LockScreenLogo.scale-200.png
 Assets\SplashScreen.scale-200.png
 Assets\Square150x150Logo.scale-200.png
@@ -13,4 +14,3 @@ View\MuralPage.xbf
 View\UICategoria.xbf
 View\UIPlat.xbf
 Properties\Default.rd.xml
-WinMetadata\Windows.winmd
