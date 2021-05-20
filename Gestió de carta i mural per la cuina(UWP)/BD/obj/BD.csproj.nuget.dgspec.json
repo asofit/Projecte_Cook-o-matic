@@ -50,6 +50,14 @@
             "MySql.Data.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.22, )"
+            },
+            "WinRTXamlToolkit.UWP": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
+            "winrtxamltoolkit": {
+              "target": "Package",
+              "version": "[2.3.0, )"
             }
           },
           "imports": [

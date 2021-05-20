@@ -1,4 +1,4 @@
-﻿using Carta_i_Mural.Model;
+﻿using BD.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,9 +24,6 @@ namespace Carta_i_Mural.View
         {
             this.InitializeComponent();
         }
-
-
-
         public Categoria CurrentCategoria
         {
             get { return (Categoria)GetValue(CurrentCategoriaProperty); }

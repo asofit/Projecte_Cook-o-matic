@@ -10,8 +10,16 @@
 
     <NavigationView x:Name="nvwNavigationBar" IsSettingsVisible="False" ItemInvoked="NvwNavigationBar_ItemInvoked">
         <NavigationView.MenuItems>
-            <NavigationViewItem Tag="carta" Content="Carta"></NavigationViewItem>
-            <NavigationViewItem Tag="mural" Content="Mural"></NavigationViewItem>
+            <NavigationViewItem Tag="carta" Content="Carta">
+                <NavigationViewItem.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF0E3;"></FontIcon>
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+            <NavigationViewItem Tag="mural" Content="Mural">
+                <NavigationViewItem.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8A9;"></FontIcon>
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
         </NavigationView.MenuItems>
         <Frame x:Name="frmPage" Background="Transparent"></Frame>
     </NavigationView>

@@ -1,0 +1,61 @@
+﻿<UserControl x:ConnectionId='1'
+    x:Class="Carta_i_Mural.View.UIPlatForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Carta_i_Mural.View"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="600"
+    d:DesignWidth="400"
+    x:Name="uiPlatForm"
+                              >
+
+    <Grid x:ConnectionId='2' x:Name="grdPage" Background="White" Padding="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="33*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="66*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"></ColumnDefinition>
+            <ColumnDefinition Width="50*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Nom del plat: " FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Stretch"></TextBlock>
+        <TextBox x:ConnectionId='3' Grid.Row="0" Grid.Column="1" x:Name="nom" Text="{Binding ElementName=uiPlatForm, Path=CurrentPlat.Nom, Mode=TwoWay}"></TextBox>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Descripció (accepta Markdown): " FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Stretch"></TextBlock>
+        <TextBox x:ConnectionId='4' Grid.Row="1" Grid.Column="1" x:Name="desc" Text="{Binding ElementName=uiPlatForm, Path=CurrentPlat.Descripcio, Mode=TwoWay}"></TextBox>
+        <controls:MarkdownTextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding ElementName=desc, Path=Text}" IsEnabled="False"></controls:MarkdownTextBlock>
+
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Preu: " FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+        <muxc:NumberBox Grid.Row="3" Grid.Column="1" Value="{Binding ElementName=uiPlatForm, Path=CurrentPlat.Preu, Mode=TwoWay}" 
+                        ValidationMode="InvalidInputOverwritten" HorizontalAlignment="Stretch"></muxc:NumberBox>
+
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Foto: " FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+        <Grid Grid.Row="4" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Margin="10">
+                <Image Stretch="Fill" Source="{Binding ElementName=uiPlatForm, Path=CurrentPlat.Foto, FallbackValue=ms-appx:///Assets/LockScreenLogo.scale-200.png}"></Image>
+            </Border>
+            <Button x:ConnectionId='7' Grid.Row="1" HorizontalAlignment="Center" Content="Tria imatge"                     ></Button>
+        </Grid>
+
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Disponible: " FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+        <CheckBox x:ConnectionId='5' Grid.Row="5" Grid.Column="1" x:Name="disp" IsChecked="{Binding ElementName=uiPlatForm, Path=CurrentPlat.Disponible, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" ></CheckBox>
+        
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="Categoria: " FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+        <ComboBox x:ConnectionId='6' x:Name="cboCategoria" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" SelectedItem="{Binding ElementName=uiPlatForm, Path=CurrentPlat.Categoria, Mode=TwoWay}"></ComboBox>
+    </Grid>
+</UserControl>
+

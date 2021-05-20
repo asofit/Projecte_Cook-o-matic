@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/stezcPeGdbl5NVth6y28oHQcSryhuQkOkqzyGZeENouHNw2DxjuoSOis62sW2OZvoDnUuPHFgYFsl7BUqYQyA==",
+  "dgSpecHash": "LIt7NWHMVvQV2JquZZzNhQQKXxVwkgXuSww8aOyCfvb6aaMI0Sv/x5IJlcunR+mNJNhZfKO+0iODVq6s5+8Iyw==",
   "success": true,
   "projectFilePath": "D:\\Documents\\DAM2\\Projecte\\Gestió de carta i mural per la cuina(UWP)\\BD\\BD.csproj",
   "expectedPackageFiles": [
@@ -126,7 +126,9 @@
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\system.xml.readerwriter\\4.0.11\\system.xml.readerwriter.4.0.11.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\system.xml.xmldocument\\4.0.1\\system.xml.xmldocument.4.0.1.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\system.xml.xpath\\4.0.1\\system.xml.xpath.4.0.1.nupkg.sha512",
-    "C:\\Users\\Usuario\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.0.1\\system.xml.xpath.xmldocument.4.0.1.nupkg.sha512"
+    "C:\\Users\\Usuario\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.0.1\\system.xml.xpath.xmldocument.4.0.1.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\winrtxamltoolkit\\2.3.0\\winrtxamltoolkit.2.3.0.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\winrtxamltoolkit.uwp\\2.3.0\\winrtxamltoolkit.uwp.2.3.0.nupkg.sha512"
   ],
   "logs": [
     {

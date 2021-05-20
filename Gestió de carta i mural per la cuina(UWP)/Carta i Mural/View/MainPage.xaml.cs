@@ -22,12 +22,10 @@ namespace Carta_i_Mural.View
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        List<Type> backPage = new List<Type>();
-        int backPageIndex = -1;
         public MainPage()
         {
             this.InitializeComponent();
-            //frmPage.Navigate(typeof(MuralPage));
+            frmPage.Navigate(typeof(MuralPage));
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {

@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Carta i Mural", "Carta i Mural.csproj", "{C83E7DB0-17C8-4F2C-B141-9B07A5EAE8AD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9EF23AE7-F235-463A-919F-99A69B82B203} = {9EF23AE7-F235-463A-919F-99A69B82B203}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD", "..\BD\BD.csproj", "{9EF23AE7-F235-463A-919F-99A69B82B203}"
 EndProject

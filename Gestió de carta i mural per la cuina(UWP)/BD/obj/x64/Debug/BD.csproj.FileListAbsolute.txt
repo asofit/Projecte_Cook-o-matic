@@ -26,7 +26,6 @@ D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\BD\bin\x64
 D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\BD\bin\x64\Debug\BD.pdb
 D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\BD\bin\x64\Debug\BD.pri
 D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\BD\bin\x64\Debug\Microsoft.UI.Xaml.Markup.winmd
-D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\BD\obj\x64\Debug\BD.csprojAssemblyReference.cache
 D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\BD\obj\x64\Debug\BD.csproj.CoreCompileInputs.cache
 D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\BD\obj\x64\Debug\BD.csproj.CopyComplete
 D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\BD\obj\x64\Debug\BD.dll
@@ -46,3 +45,7 @@ D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\BD\obj\x64
 D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\BD\obj\x64\Debug\qualifiers.txt
 D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\BD\obj\x64\Debug\qualifiers.txt.intermediate
 D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\BD\obj\x64\Debug\MultipleQualifiersPerDimensionFound.txt
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\BD\obj\x64\Debug\BD.csprojAssemblyReference.cache
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\BD\bin\x64\Debug\WinRTXamlToolkit\WinRTXamlToolkit.xr.xml
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\BD\bin\x64\Debug\WinRTXamlToolkit\Properties\WinRTXamlToolkit.rd.xml
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\BD\obj\x64\Debug\WinRTXamlToolkit.pri.xml

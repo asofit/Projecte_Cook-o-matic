@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage.Streams;
 using Windows.UI;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace BD.Utilities
 {
@@ -23,7 +28,7 @@ namespace BD.Utilities
             
         }
 
-        public static void Llegeix(DbDataReader reader, out int valor, string nomColumna, int valorPerDefecte = -1)
+        public static void Llegeix(DbDataReader reader, out int valor, string nomColumna, int valorPerDefecte = 0)
         {
             valor = valorPerDefecte;
             int ordinal = reader.GetOrdinal(nomColumna);
@@ -43,6 +48,52 @@ namespace BD.Utilities
                 valor = reader.GetChar(ordinal);
             }
         }
+
+        public static void Llegeix(DbDataReader reader, out byte[] valor, string nomColumna)
+        {
+            valor = new byte[16777216];
+            int ordinal = reader.GetOrdinal(nomColumna);
+            if (!reader.IsDBNull(ordinal))
+            {
+                Type t = reader.GetFieldType(reader.GetOrdinal(nomColumna));
+                reader.GetBytes(ordinal,0, valor, 0, 16777216);
+            }
+        }
+
+        public static void Llegeix(DbDataReader reader, out bool valor, string nomColumna, bool valorPerDefecte = false)
+        {
+            valor = valorPerDefecte;
+            int ordinal = reader.GetOrdinal(nomColumna);
+            if (!reader.IsDBNull(ordinal))
+            {
+                Type t = reader.GetFieldType(reader.GetOrdinal(nomColumna));
+                valor = reader.GetBoolean(ordinal);
+            }
+        }
+
+        public static void Llegeix(DbDataReader reader, out long valor, string nomColumna, long valorPerDefecte = 0)
+        {
+            valor = valorPerDefecte;
+            int ordinal = reader.GetOrdinal(nomColumna);
+            if (!reader.IsDBNull(ordinal))
+            {
+                Type t = reader.GetFieldType(reader.GetOrdinal(nomColumna));
+                valor = reader.GetInt32(ordinal);
+            }
+        }
+
+        public static void Llegeix(DbDataReader reader, out SolidColorBrush valor, string nomColumna, SolidColorBrush valorPerDefecte)
+        {
+            valor = valorPerDefecte;
+            int ordinal = reader.GetOrdinal(nomColumna);
+            if (!reader.IsDBNull(ordinal))
+            {
+                Type t = reader.GetFieldType(reader.GetOrdinal(nomColumna));
+                string valorST = reader.GetString(ordinal);
+                valor = GetBrushFromHex(valorST);
+            }
+        }
+
         public static void Llegeix(DbDataReader reader, out string valor, string nomColumna, string valorPerDefecte = "")
         {
             valor = valorPerDefecte;
@@ -94,6 +145,20 @@ namespace BD.Utilities
                 return Color.FromArgb(numBites[0], numBites[1], numBites[2], numBites[3]);
             }
             return Colors.Transparent;
+        }
+
+        public static SolidColorBrush GetBrushFromHex(string hex)
+        {
+            byte r = byte.Parse(hex.Substring(0, 2), NumberStyles.HexNumber);
+            byte g = byte.Parse(hex.Substring(2, 2), NumberStyles.HexNumber);
+            byte b = byte.Parse(hex.Substring(4, 2), NumberStyles.HexNumber);
+
+            Color color = Color.FromArgb(255, r, g, b);
+            SolidColorBrush br = new SolidColorBrush(color);
+
+            string colorST = br.Color.ToString();
+
+            return new SolidColorBrush(color);
         }
     }
 }
