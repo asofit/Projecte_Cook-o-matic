@@ -1,2 +1,2 @@
-D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\BD\BD.csproj;x64
-D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\Carta i Mural.csproj;x64
+D:\Documents\DAM2\PROJ\Projecte_Cook-o-matic\Gestió de carta i mural per la cuina(UWP)\BD\BD.csproj;x64
+D:\Documents\DAM2\PROJ\Projecte_Cook-o-matic\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\Carta i Mural.csproj;x64

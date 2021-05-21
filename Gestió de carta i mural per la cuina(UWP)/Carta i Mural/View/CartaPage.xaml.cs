@@ -141,6 +141,7 @@ namespace Carta_i_Mural.View
             if (cdr.Equals(ContentDialogResult.Primary))
             {
                 grdPlatForm.Visibility = Visibility.Collapsed;
+                uiPlatForm.CurrentPlat = new Plat();
                 btnAddPlat.IsEnabled = true;
                 allPlats = Plat.getListPlats();
                 CargaLlistes();

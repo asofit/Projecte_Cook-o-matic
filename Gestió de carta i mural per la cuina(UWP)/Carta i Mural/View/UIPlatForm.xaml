@@ -37,7 +37,7 @@
 
         <TextBlock Grid.Row="3" Grid.Column="0" Text="Preu: " FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
         <muxc:NumberBox Grid.Row="3" Grid.Column="1" Value="{Binding ElementName=uiPlatForm, Path=CurrentPlat.Preu, Mode=TwoWay}" 
-                        ValidationMode="InvalidInputOverwritten" HorizontalAlignment="Stretch"></muxc:NumberBox>
+                        ValidationMode="InvalidInputOverwritten" HorizontalAlignment="Stretch" Text="€"></muxc:NumberBox>
 
         <TextBlock Grid.Row="4" Grid.Column="0" Text="Foto: " FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
         <Grid Grid.Row="4" Grid.Column="1">
@@ -46,7 +46,7 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Margin="10">
-                <Image Stretch="Fill" Source="{Binding ElementName=uiPlatForm, Path=CurrentPlat.Foto, FallbackValue=ms-appx:///Assets/LockScreenLogo.scale-200.png}"></Image>
+                <Image Stretch="Fill" Source="{Binding ElementName=uiPlatForm, Path=CurrentPlat.Foto, FallbackValue=ms-appx:///Assets/LockScreenLogo.scale-200.png, Mode=TwoWay}" ></Image>
             </Border>
             <Button Grid.Row="1" HorizontalAlignment="Center" Content="Tria imatge" Click="Button_Click"></Button>
         </Grid>
