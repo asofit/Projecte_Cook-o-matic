@@ -25,7 +25,7 @@ namespace Carta_i_Mural.View
         public MainPage()
         {
             this.InitializeComponent();
-            frmPage.Navigate(typeof(CartaPage));
+            frmPage.Navigate(typeof(MuralPage));
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {

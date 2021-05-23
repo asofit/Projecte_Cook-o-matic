@@ -23416,11 +23416,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documents\\DAM2\\PROJ\\Projecte_Cook-o-matic\\Gestió de carta i mural per la cuina(UWP)\\Carta i Mural\\Carta i Mural.csproj",
+      "projectUniqueName": "D:\\Documents\\DAM2\\Projecte\\Gestió de carta i mural per la cuina(UWP)\\Carta i Mural\\Carta i Mural.csproj",
       "projectName": "Carta i Mural",
-      "projectPath": "D:\\Documents\\DAM2\\PROJ\\Projecte_Cook-o-matic\\Gestió de carta i mural per la cuina(UWP)\\Carta i Mural\\Carta i Mural.csproj",
+      "projectPath": "D:\\Documents\\DAM2\\Projecte\\Gestió de carta i mural per la cuina(UWP)\\Carta i Mural\\Carta i Mural.csproj",
       "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\DAM2\\PROJ\\Projecte_Cook-o-matic\\Gestió de carta i mural per la cuina(UWP)\\Carta i Mural\\obj\\",
+      "outputPath": "D:\\Documents\\DAM2\\Projecte\\Gestió de carta i mural per la cuina(UWP)\\Carta i Mural\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -23440,8 +23440,8 @@
       "frameworks": {
         "uap10.0.17763": {
           "projectReferences": {
-            "D:\\Documents\\DAM2\\PROJ\\Projecte_Cook-o-matic\\Gestió de carta i mural per la cuina(UWP)\\BD\\BD.csproj": {
-              "projectPath": "D:\\Documents\\DAM2\\PROJ\\Projecte_Cook-o-matic\\Gestió de carta i mural per la cuina(UWP)\\BD\\BD.csproj"
+            "D:\\Documents\\DAM2\\Projecte\\Gestió de carta i mural per la cuina(UWP)\\BD\\BD.csproj": {
+              "projectPath": "D:\\Documents\\DAM2\\Projecte\\Gestió de carta i mural per la cuina(UWP)\\BD\\BD.csproj"
             }
           }
         }

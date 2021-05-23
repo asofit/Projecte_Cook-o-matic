@@ -85,7 +85,7 @@ namespace BD.BDModel
                             else plat_id++;
                             consulta.CommandText = $@"
                                 INSERT INTO `plats`(`PLAT_ID`, `NOM`, `DESCRIPCIO_MD`, `PREU`, `FOTO`, `DISPONIBLE`, `CATEGORIA`) VALUES 
-                                ('@plat_id','@nom','@descripcio','@preu',LOAD_FILE(@foto),'@disponible','@categoria_id')";
+                                (@plat_id,@nom,@descripcio,@preu,LOAD_FILE(@foto),@disponible,@categoria_id)";
                             BD_Utils.CreateParameter(consulta, "plat_id",       plat_id,        DbType.Int32);
                             BD_Utils.CreateParameter(consulta, "nom",           p.Nom,          DbType.String);
                             BD_Utils.CreateParameter(consulta, "descripcio",    p.Descripcio,   DbType.String);
@@ -94,8 +94,8 @@ namespace BD.BDModel
                             BD_Utils.CreateParameter(consulta, "disponible",    p.Disponible,   DbType.Boolean);
                             BD_Utils.CreateParameter(consulta, "categoria_id",  p.Categoria.Id, DbType.Int32);
 
-                            int filesAfectades = consulta.ExecuteNonQuery();
-                            if (filesAfectades != 1)
+                            int affectedPlats = consulta.ExecuteNonQuery();
+                            if (affectedPlats != 1)
                             {
                                 trans.Rollback();
                                 return false;
@@ -113,6 +113,80 @@ namespace BD.BDModel
             {
                 return false;
             }
+        }
+
+        public static bool IsPlatInComanda(Plat p)
+        {
+            if (p == null || p.Id <= 0) return false;
+            try
+            {
+                using (ContextDB context = new ContextDB())
+                {
+                    using (var connexio = context.Database.GetDbConnection())
+                    {
+                        connexio.Open();
+
+                        using (var consulta = connexio.CreateCommand())
+                        {
+
+                            consulta.CommandText =
+                        $@"   SELECT * FROM `LINIES_COMANDA` WHERE `PLAT` = @plat_id and `ESTAT` = `EN_PREPARACIO`";
+                            BD_Utils.CreateParameter(consulta, "plat_id",  p.Id, DbType.Int32);
+
+                            var reader = consulta.ExecuteReader();
+                            return reader.Read();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public static int Delete(Plat p)
+        {
+            if (p == null || p.Id <= 0) return -1;
+            if (IsPlatInComanda(p)) return -2;
+            DbTransaction trans = null;
+            try
+            {
+                using (ContextDB context = new ContextDB())
+                {
+                    using (var connexio = context.Database.GetDbConnection())
+                    {
+                        connexio.Open();
+                        using (DbCommand consulta = connexio.CreateCommand())
+                        {
+                            trans = connexio.BeginTransaction();
+                            consulta.Transaction = trans;
+
+                            consulta.CommandText = $@"DELETE FROM linies_escandall where PLAT = @platId";
+                            BD_Utils.CreateParameter(consulta, "platId", p.Id, DbType.Int32);
+                            consulta.ExecuteNonQuery();
+                            consulta.CommandText = $@"DELETE FROM plats WHERE PLAT_ID=@platId";
+                            int affectedPlats = consulta.ExecuteNonQuery();
+
+                            if (affectedPlats != 1)
+                            {
+                                trans.Rollback();
+                                return -1;
+                            }
+                            else
+                            {
+                                trans.Commit();
+                                return 0;
+                            }
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return -2;
+            }
+
         }
     }
 }

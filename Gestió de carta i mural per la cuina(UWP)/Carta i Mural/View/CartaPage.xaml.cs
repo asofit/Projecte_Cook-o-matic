@@ -100,28 +100,67 @@ namespace Carta_i_Mural.View
         }
 
         // -
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private async void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            
-        }
+            Plat p = (Plat)grvPlats.SelectedItem;
 
-        // Guardar
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            grdPlatForm.Visibility = Visibility.Collapsed;
+            int deleted = Plat.RemovePlat(p);
 
-            Plat p = uiPlatForm.CurrentPlat;
-
-            bool saved = Plat.SavePlat(p);
-            if (saved)
+            if (deleted==0)
             {
+                grdPlatForm.Visibility = Visibility.Collapsed;
                 btnAddPlat.IsEnabled = true;
                 allPlats = Plat.getListPlats();
                 CargaLlistes();
             }
             else
             {
+                string error = "";
+                switch (deleted)
+                {
+                    case -1:
+                        error = "Plat invàlid o no existent a la BD. Consulti amb el servei tècnic.";
+                        break;
+                    case -2:
+                        error = "El plat seleccionat està referenciat forma part d'alguna comanda i no es pot eliminar.";
+                        break;
+                    default:
+                        error = "Error desconegut en intentar esborrar el plat seleccionat. Consulti amb el servei tècnic.";
+                        break;
+                }
+                ContentDialog cd = new ContentDialog()
+                {
+                    Content = error,
+                    CloseButtonText = "Ok"
+                };
 
+                ContentDialogResult cdr = await cd.ShowAsync();
+            }
+        }
+
+        // Guardar
+        private async void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Plat p = uiPlatForm.CurrentPlat;
+
+            bool saved = Plat.SavePlat(p);
+
+            if (saved)
+            {
+                grdPlatForm.Visibility = Visibility.Collapsed;
+                btnAddPlat.IsEnabled = true;
+                allPlats = Plat.getListPlats();
+                CargaLlistes();
+            }
+            else
+            {
+                ContentDialog cd = new ContentDialog()
+                {
+                    Content = "No ha sigut possible guardar el plat. Recordi que tots els camps són obligatoris.",
+                    CloseButtonText = "Ok"
+                };
+
+                ContentDialogResult cdr = await cd.ShowAsync();
             }
 
         }

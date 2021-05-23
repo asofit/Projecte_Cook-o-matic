@@ -3,6 +3,7 @@ using BD.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace BD.Model
 {
-    public class Plat
+    public class Plat: INotifyPropertyChanged
     {
         public long id;
         public string nom;
@@ -24,15 +25,24 @@ namespace BD.Model
 
         private static ObservableCollection<Plat> plats;
 
-        public long Id { get => id; set => id = value; }
-        public string Nom { get => nom; set => nom = value; }
-        public string Descripcio { get => descripcio; set => descripcio = value; }
-        public decimal Preu { get => preu; set => preu = value; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void RaisePropertyChanged(string v)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(v));
+        }
+
+        public long Id { get => id; set { id = value; RaisePropertyChanged("Id"); } }
+        public string Nom { get => nom; set { nom = value; RaisePropertyChanged("Nom"); } }
+        public string Descripcio { get => descripcio; set { descripcio = value; RaisePropertyChanged("Descripcio"); } }
+        public decimal Preu { get => preu; set { preu = value; RaisePropertyChanged("Preu"); } }
         public byte[] FotoBytes { get => fotoBytes; 
             set
             {
                 fotoBytes = value;
+                RaisePropertyChanged("FotoBytes");
                 CarregaFoto();
+                
             }
         }
 
@@ -41,13 +51,14 @@ namespace BD.Model
             set 
             {
                 foto = value;
+                RaisePropertyChanged("Foto");
                 //if (foto!=null) CarregaBytes();
                 //else fotoBytes = new byte[Constants.MAX_BYTES_ARRAY_PLAT];
             } }
 
 
-        public Categoria Categoria { get => categoria; set => categoria = value; }
-        public bool Disponible { get => disponible; set => disponible = value; }
+        public Categoria Categoria { get => categoria; set { categoria = value; RaisePropertyChanged("Categoria"); } }
+        public bool Disponible { get => disponible; set { disponible = value; RaisePropertyChanged("Disponible"); } }
 
         public Plat()
         {
@@ -80,6 +91,12 @@ namespace BD.Model
 
             bool inserted = PlatBD.Insert(p);
             return inserted;
+        }
+
+        public static int RemovePlat(Plat p)
+        {
+            int deleted = PlatBD.Delete(p);
+            return deleted;
         }
     }
 }

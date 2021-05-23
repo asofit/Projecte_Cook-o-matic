@@ -55,6 +55,7 @@ namespace BD.BDModel
 
         public static Categoria GetCategoria(long categoriaId)
         {
+            if (categoriaId <= 0) return new Categoria();
             try
             {
 

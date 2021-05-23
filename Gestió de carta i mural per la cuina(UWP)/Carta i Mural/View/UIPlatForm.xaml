@@ -33,11 +33,10 @@
 
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Descripció (accepta Markdown): " FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Stretch"></TextBlock>
         <TextBox Grid.Row="1" Grid.Column="1" x:Name="desc" Text="{Binding ElementName=uiPlatForm, Path=CurrentPlat.Descripcio, Mode=TwoWay}"></TextBox>
-        <controls:MarkdownTextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding ElementName=desc, Path=Text}" IsEnabled="False"></controls:MarkdownTextBlock>
+        <controls:MarkdownTextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding ElementName=desc, Path=Text}" IsEnabled="False" Margin="10"></controls:MarkdownTextBlock>
 
         <TextBlock Grid.Row="3" Grid.Column="0" Text="Preu: " FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-        <muxc:NumberBox Grid.Row="3" Grid.Column="1" Value="{Binding ElementName=uiPlatForm, Path=CurrentPlat.Preu, Mode=TwoWay}" 
-                        ValidationMode="InvalidInputOverwritten" HorizontalAlignment="Stretch" Text="€"></muxc:NumberBox>
+        <TextBox Grid.Row="3" Grid.Column="1"  TextChanged="TextBox_TextChanged" HorizontalAlignment="Stretch"></TextBox>
 
         <TextBlock Grid.Row="4" Grid.Column="0" Text="Foto: " FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
         <Grid Grid.Row="4" Grid.Column="1">
@@ -46,7 +45,7 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Margin="10">
-                <Image Stretch="Fill" Source="{Binding ElementName=uiPlatForm, Path=CurrentPlat.Foto, FallbackValue=ms-appx:///Assets/LockScreenLogo.scale-200.png, Mode=TwoWay}" ></Image>
+                <Image x:Name="imgPlat" Stretch="Fill" Source="{Binding ElementName=uiPlatForm, Path=CurrentPlat.Foto, FallbackValue=ms-appx:///Assets/LockScreenLogo.scale-200.png}" ></Image>
             </Border>
             <Button Grid.Row="1" HorizontalAlignment="Center" Content="Tria imatge" Click="Button_Click"></Button>
         </Grid>

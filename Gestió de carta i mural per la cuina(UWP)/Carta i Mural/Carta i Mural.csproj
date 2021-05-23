@@ -132,6 +132,9 @@
     <Compile Include="View\UICategoria.xaml.cs">
       <DependentUpon>UICategoria.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UIComanda.xaml.cs">
+      <DependentUpon>UIComanda.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UIPlat.xaml.cs">
       <DependentUpon>UIPlat.xaml</DependentUpon>
     </Compile>
@@ -172,6 +175,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UICategoria.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UIComanda.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

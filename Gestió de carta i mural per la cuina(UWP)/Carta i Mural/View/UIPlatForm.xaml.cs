@@ -38,7 +38,7 @@ namespace Carta_i_Mural.View
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CurrentPlatProperty =
-            DependencyProperty.Register("MyProperty", typeof(int), typeof(UIPlatForm), new PropertyMetadata(new Plat()));
+            DependencyProperty.Register("CurrentPlat", typeof(Plat), typeof(UIPlatForm), new PropertyMetadata(new Plat()));
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -67,12 +67,23 @@ namespace Carta_i_Mural.View
 
                 //CurrentPlat.fotoBytes = bytes;
                 CurrentPlat.Foto = new BitmapImage(new Uri(copiedFile.Path));
+                //imgPlat.Source = CurrentPlat.Foto;
             }
         }
 
         private void uiPlatForm_Loaded(object sender, RoutedEventArgs e)
         {
             cboCategoria.ItemsSource = Categoria.getListCategories();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string s = ((TextBox)sender).Text;
+            
+            if (!(Decimal.TryParse(s, out CurrentPlat.preu)))
+            {
+                ((TextBox)sender).Text = "0";
+            }
         }
     }
 }

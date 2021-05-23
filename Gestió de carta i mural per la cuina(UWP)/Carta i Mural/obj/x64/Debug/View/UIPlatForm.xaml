@@ -33,11 +33,10 @@
 
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Descripció (accepta Markdown): " FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Stretch"></TextBlock>
         <TextBox x:ConnectionId='4' Grid.Row="1" Grid.Column="1" x:Name="desc" Text="{Binding ElementName=uiPlatForm, Path=CurrentPlat.Descripcio, Mode=TwoWay}"></TextBox>
-        <controls:MarkdownTextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding ElementName=desc, Path=Text}" IsEnabled="False"></controls:MarkdownTextBlock>
+        <controls:MarkdownTextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding ElementName=desc, Path=Text}" IsEnabled="False" Margin="10"></controls:MarkdownTextBlock>
 
         <TextBlock Grid.Row="3" Grid.Column="0" Text="Preu: " FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-        <muxc:NumberBox Grid.Row="3" Grid.Column="1" Value="{Binding ElementName=uiPlatForm, Path=CurrentPlat.Preu, Mode=TwoWay}" 
-                        ValidationMode="InvalidInputOverwritten" HorizontalAlignment="Stretch" Text="€"></muxc:NumberBox>
+        <TextBox x:ConnectionId='5' Grid.Row="3" Grid.Column="1"                                    HorizontalAlignment="Stretch"></TextBox>
 
         <TextBlock Grid.Row="4" Grid.Column="0" Text="Foto: " FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
         <Grid Grid.Row="4" Grid.Column="1">
@@ -46,16 +45,16 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Margin="10">
-                <Image Stretch="Fill" Source="{Binding ElementName=uiPlatForm, Path=CurrentPlat.Foto, FallbackValue=ms-appx:///Assets/LockScreenLogo.scale-200.png, Mode=TwoWay}" ></Image>
+                <Image x:ConnectionId='9' x:Name="imgPlat" Stretch="Fill" Source="{Binding ElementName=uiPlatForm, Path=CurrentPlat.Foto, FallbackValue=ms-appx:///Assets/LockScreenLogo.scale-200.png}" ></Image>
             </Border>
-            <Button x:ConnectionId='7' Grid.Row="1" HorizontalAlignment="Center" Content="Tria imatge"                     ></Button>
+            <Button x:ConnectionId='8' Grid.Row="1" HorizontalAlignment="Center" Content="Tria imatge"                     ></Button>
         </Grid>
 
         <TextBlock Grid.Row="5" Grid.Column="0" Text="Disponible: " FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-        <CheckBox x:ConnectionId='5' Grid.Row="5" Grid.Column="1" x:Name="disp" IsChecked="{Binding ElementName=uiPlatForm, Path=CurrentPlat.Disponible, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" ></CheckBox>
+        <CheckBox x:ConnectionId='6' Grid.Row="5" Grid.Column="1" x:Name="disp" IsChecked="{Binding ElementName=uiPlatForm, Path=CurrentPlat.Disponible, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" ></CheckBox>
         
         <TextBlock Grid.Row="6" Grid.Column="0" Text="Categoria: " FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-        <ComboBox x:ConnectionId='6' x:Name="cboCategoria" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" SelectedItem="{Binding ElementName=uiPlatForm, Path=CurrentPlat.Categoria, Mode=TwoWay}"></ComboBox>
+        <ComboBox x:ConnectionId='7' x:Name="cboCategoria" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" SelectedItem="{Binding ElementName=uiPlatForm, Path=CurrentPlat.Categoria, Mode=TwoWay}"></ComboBox>
     </Grid>
 </UserControl>
 
