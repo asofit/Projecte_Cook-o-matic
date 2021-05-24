@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BD.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -105,6 +106,19 @@ namespace BD.Utilities
                 valor = reader.GetString(ordinal);
             }
         }
+
+        internal static void Llegeix(DbDataReader reader, out ESTAT valor, string nomColumna, ESTAT valorPerDefecte = ESTAT.NUL)
+        {
+            valor = valorPerDefecte;
+            int ordinal = reader.GetOrdinal(nomColumna);
+            if (!reader.IsDBNull(ordinal))
+            {
+                Type t = reader.GetFieldType(reader.GetOrdinal(nomColumna));
+
+                valor = (ESTAT)Enum.Parse(typeof(ESTAT),reader.GetString(ordinal));
+            }
+        }
+
         public static void Llegeix(DbDataReader reader, out DateTime valor, string nomColumna, DateTime valorPerDefecte = new DateTime())
         {
             valor = valorPerDefecte;

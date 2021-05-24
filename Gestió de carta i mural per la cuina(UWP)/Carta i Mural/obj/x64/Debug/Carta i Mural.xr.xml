@@ -1,9 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Roots >
   <Roots.PropertyPathNames>
-    <RootPropertyPathName Name="CurrentCategoria" />
+    <RootPropertyPathName Name="CurrentLiniaComanda" />
     <RootPropertyPathName Name="Color" />
+    <RootPropertyPathName Name="Plat" />
     <RootPropertyPathName Name="Nom" />
+    <RootPropertyPathName Name="Quantitat" />
+    <RootPropertyPathName Name="CurrentCategoria" />
+    <RootPropertyPathName Name="CurrentComanda" />
+    <RootPropertyPathName Name="Linies" />
+    <RootPropertyPathName Name="Cambrer_name" />
+    <RootPropertyPathName Name="Data_comanda_string" />
+    <RootPropertyPathName Name="Taula_id" />
     <RootPropertyPathName Name="CurrentPlat" />
     <RootPropertyPathName Name="Foto" />
     <RootPropertyPathName Name="Preu" />
@@ -59,14 +67,18 @@
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
       <RootProperty Name="SelectionMode" />
       <RootProperty Name="ItemTemplate" />
+      <RootProperty Name="ItemsPanel" />
+      <RootProperty Name="ItemsSource" />
       <RootEvent Name="SelectionChanged" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
       <RootProperty Name="Content" />
       <RootProperty Name="HorizontalScrollMode" />
       <RootProperty Name="VerticalScrollMode" />
-      <RootMethod Name="GetHorizontalScrollMode" />
-      <RootMethod Name="SetHorizontalScrollMode" />
+      <RootProperty Name="HorizontalScrollBarVisibility" />
+      <RootProperty Name="IsHorizontalRailEnabled" />
+      <RootMethod Name="GetVerticalScrollMode" />
+      <RootMethod Name="SetVerticalScrollMode" />
     </RootType>
     <RootType FullName="Carta_i_Mural.View.UIPlatForm" />
     <RootType FullName="Windows.UI.Xaml.Controls.Button">
@@ -75,6 +87,7 @@
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Margin" />
+      <RootProperty Name="Background" />
       <RootEvent Name="Click" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
@@ -83,7 +96,9 @@
       <RootProperty Name="FontSize" />
       <RootProperty Name="TextAlignment" />
       <RootProperty Name="Foreground" />
+      <RootProperty Name="TextWrapping" />
       <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Margin" />
       <RootProperty Name="VerticalAlignment" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
@@ -97,6 +112,8 @@
       <RootProperty Name="Orientation" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Children" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Background" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.GridView">
       <RootProperty Name="ItemsPanel" />
@@ -149,11 +166,17 @@
     <RootType FullName="Carta_i_Mural.View.UIComanda">
       <RootProperty Name="CurrentComanda" />
       <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="VerticalContentAlignment" />
     </RootType>
     <RootType FullName="Carta_i_Mural.View.MuralPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.UserControl">
       <RootProperty Name="Content" />
       <RootEvent Name="Loaded" />
+    </RootType>
+    <RootType FullName="Carta_i_Mural.View.UILiniaComanda">
+      <RootProperty Name="CurrentLiniaComanda" />
+      <RootProperty Name="HorizontalAlignment" />
     </RootType>
     <RootType FullName="Microsoft.Toolkit.Uwp.UI.Controls.MarkdownTextBlock">
       <RootProperty Name="Text" />

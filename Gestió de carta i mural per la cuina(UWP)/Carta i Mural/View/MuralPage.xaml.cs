@@ -1,5 +1,8 @@
-﻿using System;
+﻿using BD.BDModel;
+using BD.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -25,6 +28,7 @@ namespace Carta_i_Mural.View
     public sealed partial class MuralPage : Page
     {
         Timer t;
+        int selectedIndexComanda = 0;
         public MuralPage()
         {
             this.InitializeComponent();
@@ -33,14 +37,14 @@ namespace Carta_i_Mural.View
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             t = new Timer(2000);
-            t.Elapsed += RefreshComandes;
+            t.Elapsed += StartTimerComandes;
             t.Start();
         }
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
             t.Stop();
         }
-        private void RefreshComandes(object sender, ElapsedEventArgs e)
+        private void StartTimerComandes(object sender, ElapsedEventArgs e)
         {
             try
             {
@@ -48,7 +52,7 @@ namespace Carta_i_Mural.View
                     CoreDispatcherPriority.High,
                     () =>
                     {
-                        RefreshComandesDeVeritat();
+                        RefreshComandes();
                     }
                     );
             }
@@ -58,9 +62,15 @@ namespace Carta_i_Mural.View
             }
         }
 
-        private void RefreshComandesDeVeritat()
+        private void RefreshComandes()
         {
-      
+            lsvComandes.ItemsSource = ComandaBD.GetLlistaComandesPendents();
+            if (selectedIndexComanda >= 0 && ((ObservableCollection<Comanda>)lsvComandes.ItemsSource).Count < selectedIndexComanda) lsvComandes.SelectedIndex = selectedIndexComanda;
+        }
+
+        private void lsvComandes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lsvComandes.SelectedIndex >= 0) selectedIndexComanda = lsvComandes.SelectedIndex;
         }
     }
 }

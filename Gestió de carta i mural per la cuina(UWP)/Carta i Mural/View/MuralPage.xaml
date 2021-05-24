@@ -20,11 +20,20 @@
             <TextBlock Text="Comandes" FontWeight="Bold" FontSize="24" TextAlignment="Center" Foreground="White"></TextBlock>
         </Border>
 
-        <ScrollViewer Grid.Column="0" Grid.Row="1">
-            <ListView x:Name="lsvComandes" ScrollViewer.HorizontalScrollMode="Enabled">
+        <ScrollViewer Grid.Column="0" Grid.Row="1" 
+          ScrollViewer.HorizontalScrollMode="Enabled"
+          ScrollViewer.HorizontalScrollBarVisibility="Visible"
+          ScrollViewer.IsHorizontalRailEnabled="True"
+          ScrollViewer.VerticalScrollMode="Disabled">
+            <ListView x:Name="lsvComandes" SelectionChanged="lsvComandes_SelectionChanged">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <local:UIComanda CurrentComanda="{Binding}" HorizontalAlignment="Stretch"></local:UIComanda>
+                        <local:UIComanda CurrentComanda="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Top" VerticalContentAlignment="Top"></local:UIComanda>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

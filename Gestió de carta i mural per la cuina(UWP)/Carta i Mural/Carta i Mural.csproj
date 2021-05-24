@@ -129,6 +129,9 @@
     <Compile Include="View\MuralPage.xaml.cs">
       <DependentUpon>MuralPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UILiniaComanda.xaml.cs">
+      <DependentUpon>UILiniaComanda.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UICategoria.xaml.cs">
       <DependentUpon>UICategoria.xaml</DependentUpon>
     </Compile>
@@ -171,6 +174,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\MuralPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UILiniaComanda.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

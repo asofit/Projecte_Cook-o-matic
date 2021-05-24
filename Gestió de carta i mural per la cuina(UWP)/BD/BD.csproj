@@ -121,6 +121,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BDModel\CategoriaBD.cs" />
+    <Compile Include="BDModel\ComandaBD.cs" />
     <Compile Include="BDModel\PlatBD.cs" />
     <Compile Include="Model\Categoria.cs" />
     <Compile Include="Model\Comanda.cs" />

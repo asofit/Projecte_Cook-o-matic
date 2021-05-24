@@ -115,6 +115,53 @@ namespace BD.BDModel
             }
         }
 
+        public static Plat GetPlat(long platId)
+        {
+            if (platId <= 0) return new Plat();
+            try
+            {
+
+                using (ContextDB context = new ContextDB())
+                {
+                    using (var connexio = context.Database.GetDbConnection())
+                    {
+                        connexio.Open();
+
+                        using (var consulta = connexio.CreateCommand())
+                        {
+
+                            consulta.CommandText =
+                        $@"   SELECT * FROM `plats` WHERE PLAT_ID = @id ";
+                            BD_Utils.CreateParameter(consulta, "id", platId, DbType.Int32);
+
+                            var reader = consulta.ExecuteReader();
+                            Plat p = new Plat();
+                            if (reader.Read())
+                            {
+                                BD_Utils.Llegeix(reader, out p.id, "PLAT_ID");
+                                BD_Utils.Llegeix(reader, out p.nom, "NOM");
+                                BD_Utils.Llegeix(reader, out p.descripcio, "DESCRIPCIO_MD", null);
+                                BD_Utils.Llegeix(reader, out p.preu, "PREU");
+                                BD_Utils.Llegeix(reader, out p.fotoBytes, "FOTO");
+                                BD_Utils.Llegeix(reader, out p.disponible, "DISPONIBLE");
+
+                                long categoriaId = 0;
+                                BD_Utils.Llegeix(reader, out categoriaId, "CATEGORIA");
+                                Categoria c = CategoriaBD.GetCategoria(categoriaId);
+                                p.Categoria = c;
+                            }
+                            return p;
+                        }
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                return new Plat();
+            }
+        }
+
         public static bool IsPlatInComanda(Plat p)
         {
             if (p == null || p.Id <= 0) return false;

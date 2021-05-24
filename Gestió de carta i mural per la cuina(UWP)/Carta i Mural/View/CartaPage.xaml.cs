@@ -122,7 +122,7 @@ namespace Carta_i_Mural.View
                         error = "Plat invàlid o no existent a la BD. Consulti amb el servei tècnic.";
                         break;
                     case -2:
-                        error = "El plat seleccionat està referenciat forma part d'alguna comanda i no es pot eliminar.";
+                        error = "El plat seleccionat forma part d'alguna comanda i no es pot eliminar.";
                         break;
                     default:
                         error = "Error desconegut en intentar esborrar el plat seleccionat. Consulti amb el servei tècnic.";
