@@ -1,15 +1,32 @@
 package gestioescandalls.Model;
 
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="PLATS")
 public class Plat {
+    @Id
+    @Column(name="PLAT_ID")
     private long id;
+    
     private String nom;
+    @Column(name="DESCRIPCIO_MD")
     private String descripcio;
     private double preu;
-    private String imageLocalUrl;
     private boolean disponible;
+    
+    @ManyToOne()
+    @JoinColumn(name = "CATEGORIA")
     private Categoria categoria;
+    
+    @OneToMany(mappedBy = "plat")
     private List<LiniaEscandall> escandall;
 
     public Plat() {
@@ -31,10 +48,6 @@ public class Plat {
         return preu;
     }
 
-    public String getImageLocalUrl() {
-        return imageLocalUrl;
-    }
-
     public boolean isDisponible() {
         return disponible;
     }
@@ -43,32 +56,33 @@ public class Plat {
         return categoria;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+//    public void setId(long id) {
+//        this.id = id;
+//    }
+//
+//    public void setNom(String nom) {
+//        this.nom = nom;
+//    }
+//
+//    public void setDescripcio(String descripcio) {
+//        this.descripcio = descripcio;
+//    }
+//
+//    public void setPreu(double preu) {
+//        this.preu = preu;
+//    }
+//
+//    public void setDisponible(boolean disponible) {
+//        this.disponible = disponible;
+//    }
+//
+//    public void setCategoria(Categoria categoria) {
+//        this.categoria = categoria;
+//    }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public void setDescripcio(String descripcio) {
-        this.descripcio = descripcio;
-    }
-
-    public void setPreu(double preu) {
-        this.preu = preu;
-    }
-
-    public void setImageLocalUrl(String imageLocalUrl) {
-        this.imageLocalUrl = imageLocalUrl;
-    }
-
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    @Override
+    public String toString() {
+        return nom;
     }
     
     

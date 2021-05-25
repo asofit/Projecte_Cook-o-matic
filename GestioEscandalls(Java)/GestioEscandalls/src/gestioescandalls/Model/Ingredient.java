@@ -1,16 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gestioescandalls.Model;
 
-/**
- *
- * @author ADMIN
- */
-public class Ingredient {
+import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="INGREDIENTS")
+public class Ingredient implements Serializable{
+    
+    @Id
+    @Column(name="INGREDIENT_ID")
     private long id;
+    @Basic(optional = false)
+    @Column(nullable = false, length=25, name="NOM")
     private String nom;
 
     public Ingredient() {
