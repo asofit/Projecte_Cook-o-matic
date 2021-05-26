@@ -1,6 +1,7 @@
 package gestioescandalls.Model;
 
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,14 +23,18 @@ public class Plat {
     private double preu;
     private boolean disponible;
     
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CATEGORIA")
     private Categoria categoria;
     
-    @OneToMany(mappedBy = "plat")
+    @OneToMany(mappedBy = "plat", cascade = CascadeType.ALL)
     private List<LiniaEscandall> escandall;
 
+
     public Plat() {
+    }
+    public List<LiniaEscandall> getEscandall() {
+        return escandall;
     }
 
     public long getId() {
@@ -56,30 +61,31 @@ public class Plat {
         return categoria;
     }
 
-//    public void setId(long id) {
-//        this.id = id;
-//    }
-//
-//    public void setNom(String nom) {
-//        this.nom = nom;
-//    }
-//
-//    public void setDescripcio(String descripcio) {
-//        this.descripcio = descripcio;
-//    }
-//
-//    public void setPreu(double preu) {
-//        this.preu = preu;
-//    }
-//
-//    public void setDisponible(boolean disponible) {
-//        this.disponible = disponible;
-//    }
-//
-//    public void setCategoria(Categoria categoria) {
-//        this.categoria = categoria;
-//    }
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 43 * hash + (int) (this.id ^ (this.id >>> 32));
+        return hash;
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Plat other = (Plat) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+    
     @Override
     public String toString() {
         return nom;
