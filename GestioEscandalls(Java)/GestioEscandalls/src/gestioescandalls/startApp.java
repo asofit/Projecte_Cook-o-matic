@@ -37,6 +37,8 @@ public class startApp {
             ex.printStackTrace();
         }
         
+//        em.getTransaction().begin();
+        
         GestioEscandalls ui = new GestioEscandalls(em);
     }
     

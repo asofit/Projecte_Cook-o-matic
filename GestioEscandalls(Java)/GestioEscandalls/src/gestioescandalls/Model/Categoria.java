@@ -7,6 +7,7 @@ package gestioescandalls.Model;
 
 import java.awt.Color;
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,12 +39,8 @@ public class Categoria implements Serializable{
         return nom;
     }
 
-    public Color getColor() {
-        int r = Integer.parseInt(colorHex.substring(0,1));
-        int g = Integer.parseInt(colorHex.substring(2,3));
-        int b = Integer.parseInt(colorHex.substring(4,5));
-        
-        return new Color(r,g,b);
+    public Color getColor() {        
+        return Color.decode("#"+colorHex.toUpperCase());
     }
 
     public void setCodi(long codi) {
@@ -61,6 +58,31 @@ public class Categoria implements Serializable{
     @Override
     public String toString() {
         return nom;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.codi);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Categoria other = (Categoria) obj;
+        if (!Objects.equals(this.codi, other.codi)) {
+            return false;
+        }
+        return true;
     }
     
     

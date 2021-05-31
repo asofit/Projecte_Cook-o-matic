@@ -7,6 +7,8 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityExistsException;
+import javax.persistence.EntityManager;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,7 +20,7 @@ public class LiniaEscandall implements Serializable, Comparable<LiniaEscandall>{
 
     
     @Id
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "PLAT")
     private Plat plat;
 //    private int plat;
@@ -26,11 +28,11 @@ public class LiniaEscandall implements Serializable, Comparable<LiniaEscandall>{
     @Column(name="LINIA_ESC_ID")
     private int id;
     private int quantitat;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "INGREDIENT")
     private Ingredient ingredient;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "UNITAT")
     private Unitat unitat;
 
@@ -118,7 +120,7 @@ public class LiniaEscandall implements Serializable, Comparable<LiniaEscandall>{
 
     @Override
     public String toString() {
-        return quantitat + "" +  unitat + " x " + ingredient;
+        return quantitat + " " +  unitat + " de " + ingredient;
     }
 
     @Override
@@ -132,4 +134,37 @@ public class LiniaEscandall implements Serializable, Comparable<LiniaEscandall>{
             return platDiff;
         }
     }    
+    
+    // CRUD de Línies d'Escandall
+    public static boolean insertaLiniaEscandall(EntityManager em, LiniaEscandall le){
+        em.getTransaction().begin();
+        try {
+            em.persist(le);
+            em.getTransaction().commit();
+            return true;
+        } 
+        catch (EntityExistsException eee) {
+            System.out.println(eee);
+            em.getTransaction().rollback();
+        }
+        return false;
+    }
+    public static boolean eliminaLiniaEscandall(EntityManager em, LiniaEscandall le){
+        em.getTransaction().begin();
+        try {
+            if (!em.contains(le)){
+                em.merge(le);
+            }
+          em.remove(le);
+//            String consulta = "delete from LINIES_ESCANDALL where PLAT = :platid and LINIA_ESC_ID = :liniaid";
+//            em.createNativeQuery(consulta).setParameter("platid", le.getPlat().getId()).setParameter("liniaid", le.getId()).executeUpdate();
+            em.getTransaction().commit();
+            return true;
+        } 
+        catch (EntityExistsException eee) {
+            System.out.println(eee);
+            em.getTransaction().rollback();
+        }
+        return false;
+    }
 }
