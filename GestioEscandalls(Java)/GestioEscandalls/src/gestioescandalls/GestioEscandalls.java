@@ -32,6 +32,8 @@ import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 import javax.swing.WindowConstants;
 import javax.swing.border.Border;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -281,9 +283,12 @@ public class GestioEscandalls {
         private JLabel txtPreu;
         private JLabel txtDisponibilitat;
         private JLabel txtCategoria;
+        private JTextField txtQuantitat;
 
         private LiniaEscandall selectedEscandall = null;
-
+        private Ingredient selectedIngredient = null;
+        private Unitat selectedUnitat = null;
+        private int selectedQuantitat = 0;
         private Plat currentPlat;
 
         public EditFrame(String nom, Plat platToEdit, EntityManager em) {
@@ -303,13 +308,13 @@ public class GestioEscandalls {
             JPanel eastFrame = new JPanel();
             eastFrame.setLayout(new BoxLayout(eastFrame, BoxLayout.Y_AXIS));
             JScrollPane scrollFrame = new JScrollPane(llistaEscandall);
-            Dimension listSize = new Dimension(400, 50);
+            Dimension listSize = new Dimension(400, 100);
             scrollFrame.setSize(listSize);
             scrollFrame.setMaximumSize(listSize);
             scrollFrame.setPreferredSize(listSize);
 
             Border m1 = BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1);
-            Border m2 = BorderFactory.createEmptyBorder(0, 40, 5, 0);// top,left,bottom,right);
+            Border m2 = BorderFactory.createEmptyBorder(0, 40, 5, 0);
             Border m3 = BorderFactory.createCompoundBorder(m2, m1);
 
             scrollFrame.setBorder(m3);
@@ -348,13 +353,12 @@ public class GestioEscandalls {
             bButtons.add(bSi);
             bButtons.add(Box.createHorizontalStrut(20));
             bButtons.add(bCancel);
-
-            // Creació d'una caixa vertical        
+   
             Box b = Box.createVerticalBox();
             b.add(Box.createVerticalStrut(10));
-            b.add(bLabel); // afegir caixa , fila amb etiqueta i caixa de text
+            b.add(bLabel);
             b.add(Box.createVerticalStrut(20));
-            b.add(bButtons);// afegir caixa , fila amb 2 botons
+            b.add(bButtons);
             b.add(Box.createVerticalStrut(10));
             JPanel p = new JPanel();
 
@@ -379,8 +383,31 @@ public class GestioEscandalls {
             btnAddEscandall.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
-                    southFrame.setVisible(true);
-                    btnAddEscandall.setEnabled(false);
+                    if (selectedIngredient != null && 
+                        selectedUnitat != null && 
+                        selectedQuantitat> 0){
+                        LiniaEscandall le = new LiniaEscandall();
+                        le.setIngredient(selectedIngredient);
+                        le.setUnitat(selectedUnitat);
+                        le.setQuantitat(selectedQuantitat);
+                        le.setPlat(currentPlat);
+                        int id = 0;
+                        List<LiniaEscandall> escandall =  currentPlat.getEscandall();
+                        for (int i = 0; i<escandall.size(); i++){
+                            if (escandall.get(i).getId() > id) id = escandall.get(i).getId();
+                        }
+                        id++;
+                        le.setId(id);
+                        if (LiniaEscandall.insertaLiniaEscandall(em, le)){
+                            refrescaLlistes(em);
+                            em.refresh(currentPlat);
+                            currentPlat = em.find(Plat.class, currentPlat.getId());
+                            refreshPlat();
+                            if (currentPlat == null){
+                                edt.setVisible(false);
+                            }
+                        }
+                    }
                 }
             });
 
@@ -446,10 +473,67 @@ public class GestioEscandalls {
             westFrame.add(platFrame, BorderLayout.NORTH);
 
             southFrame = new JPanel();
+            
+            JLabel lblIngredients = new JLabel("Ingredient: ");
+            JComboBox<Ingredient> cboIngredients = new JComboBox<Ingredient>();
+            selectedIngredient = null;
+            cboIngredients.addItem(null);
+            for (int i = 0; i < ingredients.size(); i++) {
+              cboIngredients.addItem(ingredients.get(i));
+            }
+            cboIngredients.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent action) {
+                    JComboBox cb = (JComboBox)action.getSource();
+                    selectedIngredient = (Ingredient)cb.getSelectedItem();
+                }
+            }); 
+            
+            JLabel lblUnitats = new JLabel("Quantitat: ");
+            txtQuantitat = new JTextField("0");
+            txtQuantitat.setColumns(5);
+            txtQuantitat.getDocument().addDocumentListener(new DocumentListener() {
+                @Override
+                public void insertUpdate(DocumentEvent d) {
+                    changeSelectedQuantitat();
+                }
 
+                @Override
+                public void removeUpdate(DocumentEvent arg0) {
+                    changeSelectedQuantitat();
+                }
 
-
-            southFrame.setVisible(false);
+                @Override
+                public void changedUpdate(DocumentEvent arg0) {
+                    changeSelectedQuantitat();
+                }
+            });
+            
+            JComboBox<Unitat> cboUnitats = new JComboBox<Unitat>();
+            selectedUnitat = null;
+            cboUnitats.addItem(null);
+            for (int i = 0; i < unitats.size(); i++) {
+              cboUnitats.addItem(unitats.get(i));
+            }
+            cboUnitats.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent action) {
+                    JComboBox cb = (JComboBox)action.getSource();
+                    selectedUnitat = (Unitat)cb.getSelectedItem();
+                }
+            });
+                        
+            Box bInsert = Box.createHorizontalBox();
+            bInsert.add(lblIngredients);
+            bInsert.add(Box.createHorizontalStrut(10));
+            bInsert.add(cboIngredients);
+            bInsert.add(Box.createHorizontalStrut(20));
+            bInsert.add(lblUnitats);
+            bInsert.add(Box.createHorizontalStrut(10));
+            bInsert.add(txtQuantitat);
+            bInsert.add(Box.createHorizontalStrut(30));
+            bInsert.add(cboUnitats);
+            southFrame.add(bInsert);
 
             this.add(eastFrame, BorderLayout.EAST);
             this.add(westFrame, BorderLayout.WEST);
@@ -459,13 +543,22 @@ public class GestioEscandalls {
             
             this.pack();
             this.setVisible(true);
-            Dimension mainFrameSize = new Dimension(700, 500);
+            Dimension mainFrameSize = new Dimension(700, 300);
             this.setSize(mainFrameSize);
             this.setResizable(false);
             this.setLocationRelativeTo(null);
             this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         }
 
+        private void changeSelectedQuantitat(){
+            try{
+                selectedQuantitat = Integer.parseInt(txtQuantitat.getText());
+            }
+            catch(Exception e){
+                selectedQuantitat = 0;
+            }
+        };
+        
         // disponibilitat: 0 = Totes; 1 = Sí; 2 = No
         private void refreshListEscandall() {
             modelLlistaEscandall.clear();
