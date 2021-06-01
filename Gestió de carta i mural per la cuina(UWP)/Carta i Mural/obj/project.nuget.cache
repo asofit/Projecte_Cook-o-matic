@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "EJ4UamwNcMhIfTVP0QX/AednZS0IZksQNkuQ/1gvkhSV8yt0Tq5PMlF+vL0JKJsK2VijwqOLQdpL/02Vxq8kWw==",
+  "dgSpecHash": "4xDIFVQNIIynWpgtyVneWzKSQCnf/VxcUDYqP41Ec/G3anBpKDfta3vZ8lRVFtsYAYvkyngGqnvmnlWIku5Bzw==",
   "success": true,
   "projectFilePath": "D:\\Documents\\DAM2\\Projecte\\Gestió de carta i mural per la cuina(UWP)\\Carta i Mural\\Carta i Mural.csproj",
   "expectedPackageFiles": [
@@ -105,6 +105,7 @@
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\system.diagnostics.debug\\4.0.11\\system.diagnostics.debug.4.0.11.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\system.diagnostics.debug\\4.3.0\\system.diagnostics.debug.4.3.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.1\\system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\system.drawing.common\\5.0.2\\system.drawing.common.5.0.2.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\system.globalization\\4.0.11\\system.globalization.4.0.11.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\system.globalization\\4.3.0\\system.globalization.4.3.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\system.io\\4.3.0\\system.io.4.3.0.nupkg.sha512",

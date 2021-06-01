@@ -6,9 +6,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.Common;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace BD.BDModel
 {
@@ -62,7 +66,7 @@ namespace BD.BDModel
             }
         }
 
-        public static bool Insert(Plat p)
+        public async static bool Insert(Plat p)
         {
             if (p == null) return false;
             DbTransaction trans = null;
@@ -85,12 +89,29 @@ namespace BD.BDModel
                             else plat_id++;
                             consulta.CommandText = $@"
                                 INSERT INTO `plats`(`PLAT_ID`, `NOM`, `DESCRIPCIO_MD`, `PREU`, `FOTO`, `DISPONIBLE`, `CATEGORIA`) VALUES 
-                                (@plat_id,@nom,@descripcio,@preu,LOAD_FILE(@foto),@disponible,@categoria_id)";
+                                (@plat_id,@nom,@descripcio,@preu,FROM_BASE64(@foto),@disponible,@categoria_id)";
                             BD_Utils.CreateParameter(consulta, "plat_id",       plat_id,        DbType.Int32);
                             BD_Utils.CreateParameter(consulta, "nom",           p.Nom,          DbType.String);
                             BD_Utils.CreateParameter(consulta, "descripcio",    p.Descripcio,   DbType.String);
                             BD_Utils.CreateParameter(consulta, "preu",          p.Preu,         DbType.Decimal);
-                            BD_Utils.CreateParameter(consulta, "foto",          p.Foto.UriSource.AbsolutePath,    DbType.String);
+                            //BD_Utils.CreateParameter(consulta, "foto",          p.Foto.UriSource.AbsolutePath,    DbType.String);
+                            string fotoS = string.Empty;
+
+                            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(p.Foto.UriSource);
+                            byte[] byteArray;
+                            using (var inputStream = await file.OpenSequentialReadAsync())
+                            {
+                                var readStream = inputStream.AsStreamForRead();
+
+                                byteArray = new byte[readStream.Length];
+                                await readStream.ReadAsync(byteArray, 0, byteArray.Length);
+                            }
+
+
+                            fotoS = Convert.ToBase64String(byteArray);
+                            byteArray = null;
+
+                            BD_Utils.CreateParameter(consulta, "foto",          fotoS,          DbType.String);
                             BD_Utils.CreateParameter(consulta, "disponible",    p.Disponible,   DbType.Boolean);
                             BD_Utils.CreateParameter(consulta, "categoria_id",  p.Categoria.Id, DbType.Int32);
 
