@@ -20,9 +20,13 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.Blob;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -194,11 +198,11 @@ public class Server {
                         getComanda();
                         break;
                     case 5:
-//                        putTextOnScreen("Donem ok");
-////                        System.out.println("Donem ok");
-//                        oos.writeBoolean(true);
-//                        oos.flush();
-//                        createComanda();
+                        putTextOnScreen("Donem ok");
+//                        System.out.println("Donem ok");
+                        oos.writeBoolean(true);
+                        oos.flush();
+                        createComanda();
                         break;
                     case 6:
                         putTextOnScreen("Donem ok");
@@ -468,82 +472,156 @@ public class Server {
             }
         }
 
-//        private void createComanda() {
-//            try {
-//                putTextOnScreen("Llegim sessió");
-////                System.out.println("Llegim sessió");
-//                int sessio = ois.readInt();
-//                System.out.println(sessio);
-//                putTextOnScreen("Llegim taula");
-////                System.out.println("Llegim comanda");
-//                Taula t = (Taula)ois.readObject();
-//                System.out.println(t);
-//                putTextOnScreen("Llegim num linies comanda");
-////                System.out.println("Llegim comanda");
-//                int totalLinies = ois.readInt();
-//                System.out.println(totalLinies);
-//                putTextOnScreen("Llegim linies comanda");
-////                System.out.println("Llegim comanda");
-//                ArrayList<LiniaComanda> linies = (ArrayList<LiniaComanda>)ois.readObject();
-//                if (linies != null){
-//                    System.out.println("Hem llegit dades");
-//                    for (LiniaComanda lc : linies) {
-//                        System.out.println(lc);
-//                    }
-//                }   
-//                
-//                if (sessio <= 0){
-//                    oos.writeInt(-1);
-//                    oos.flush();
-//                }
-//                else
-//                {
-//                    Cambrer c = Server.sessionsActives.get(sessio);
-//                    if (c==null){
-//                        oos.writeInt(-1);
-//                        oos.flush();
-//                    }
-//                    else
-//                    {
-//                        Connection conn = null;
-//                        try{
-//                            conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cook_o_matic_bd","root","");
-//                            Statement stmt=conn.createStatement();  
-//                            String insert = "SELECT * FROM linies_comanda where comanda="+comanda_id;
-//                            int result=stmt.executeUpdate(insert);  
-//                            
-//                            List<LiniaComanda> linies = new ArrayList<LiniaComanda>();
-//                            while(rs.next()){
-//                                LiniaComanda lc = new LiniaComanda();
-//                                lc.num = rs.getInt("LINIA_COM_ID");
-//                                lc.quantitat = rs.getInt("QUANTITAT");
-//                                lc.codi_plat = rs.getInt("PLAT");
-//                                linies.add(lc);
-//                            }  
-//                            
-//                            int totalLinies = linies.size();
-//
-//                            oos.writeInt(totalLinies);
-//                            oos.flush();
-//                            oos.writeObject(linies);
-//                            oos.flush();
-//                            
-//                        }
-//                        catch(Exception e){
-//                            oos.writeInt(-1);
-//                            oos.flush();
-//                        }
-//                    }
-//                }
-//            } catch (IOException ex) {
-//                System.out.println(ex);
-//            } catch (ClassNotFoundException ex) {
-//                System.out.println(ex);
-//            }
-//        }
+        private void createComanda() {
+            try {
+                putTextOnScreen("Llegim sessió");
+//                System.out.println("Llegim sessió");
+                int sessio = ois.readInt();
+                System.out.println(sessio);
+                putTextOnScreen("Llegim taula");
+//                System.out.println("Llegim comanda");
+                Taula t = (Taula)ois.readObject();
+                System.out.println(t);
+                putTextOnScreen("Llegim num linies comanda");
+//                System.out.println("Llegim comanda");
+                int totalLinies = ois.readInt();
+                System.out.println(totalLinies);
+                putTextOnScreen("Llegim linies comanda");
+//                System.out.println("Llegim comanda");
+                ArrayList<LiniaComanda> linies = (ArrayList<LiniaComanda>)ois.readObject();
+                if (linies != null){
+                    putTextOnScreen("Hem llegit dades");
+                    for (LiniaComanda lco : linies) {
+                        putTextOnScreen(lco.toString());
+                        if (lco.num <= 0) linies.remove(lco);
+                    }
+                }   
+                
+                if (sessio <= 0){
+                    oos.writeInt(-1);
+                    oos.flush();
+                }
+                else
+                {
+                    Cambrer c = Server.sessionsActives.get(sessio);
+                    if (c==null){
+                        oos.writeInt(-1);
+                        oos.flush();
+                    }
+                    else
+                    {
+                        Connection conn = null;
+                        try{
+                            conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cook_o_matic_bd","root","");
+                            // Comprovem que la taula existeix i no té comanda activa
+                            String query = "SELECT count(*) as taules FROM taules where comanda_activa IS NULL and taula_id="+t.taula_id;
+                            Statement stmt=conn.createStatement();  
+                            ResultSet rs=stmt.executeQuery(query);  
+                            if (rs.next()){
+                                if (rs.getInt("taules") <= 0){
+                                    oos.writeInt(-1);
+                                    oos.flush();
+                                }
+                                else
+                                {
+                                    // Busquem últim comanda_id
+                                    query = "SELECT comanda_id FROM comandes ORDER BY comanda_id DESC LIMIT 0, 1";
+                                    stmt=conn.createStatement();  
+                                    rs=stmt.executeQuery(query);
+                                    int newComandaId = 1;
+                                    if (rs.next()){
+                                        newComandaId = rs.getInt("comanda_id")+1;
+                                    }
+                                    
+                                    // Guardem data i hora actuals
+                                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+                                    LocalDateTime now = LocalDateTime.now();
+                                    
+                                    String insert = "INSERT INTO comandes(`COMANDA_ID`, `DATA_COMANDA`, `TAULA`, `CAMBRER`) VALUES ("+newComandaId+", '"+dtf.format(now)+"', "+t.taula_id+", "+c.cambrer_id+")";
+                                    stmt=conn.createStatement();  
+                                    if(stmt.executeUpdate(insert) > 0){
+                                        
+                                        String update = "UPDATE taules SET `COMANDA_ACTIVA`="+newComandaId+" WHERE `TAULA_ID`="+t.taula_id;
+                                        stmt=conn.createStatement();  
+                                        stmt.executeUpdate(update);
+                                        
+                                        // Hem insertat la comanda, anem a insertar-ne les línies
+                                        for (LiniaComanda lc : linies){
+                                            insert = "INSERT INTO linies_comanda(`COMANDA`, `LINIA_COM_ID`, `PLAT`, `QUANTITAT`, `ESTAT`) VALUES ("+newComandaId+", "+lc.num+", "+lc.codi_plat+", "+lc.quantitat+", '"+"EN_PREPARACIO"+"')";
+                                            stmt=conn.createStatement();  
+                                            stmt.executeUpdate(insert);
+                                        }
+                                        oos.writeInt(newComandaId);
+                                        oos.flush();                            
+                                    }
+                                    else{
+                                        oos.writeInt(-1);
+                                        oos.flush();
+                                    }
+                                }
+                            }                                                 
+                        }
+                        catch(Exception e){
+                            oos.writeInt(-1);
+                            oos.flush();
+                        }
+                    }
+                }
+            } catch (IOException ex) {
+                System.out.println(ex);
+            } catch (ClassNotFoundException ex) {
+                System.out.println(ex);
+            }
+        }
 
         private void buidarTaula() {
-            
+            try {
+                putTextOnScreen("Llegim sessió");
+    //                System.out.println("Llegim sessió");
+                int sessio = ois.readInt();
+                System.out.println(sessio);
+                putTextOnScreen("Llegim taula");
+    //                System.out.println("Llegim comanda");
+                Taula t = (Taula)ois.readObject();
+                System.out.println(t);
+                putTextOnScreen("Hem llegit dades");
+
+                if (sessio <= 0){
+                    oos.writeInt(-1);
+                    oos.flush();
+                }
+                else
+                {
+                    Cambrer c = Server.sessionsActives.get(sessio);
+                    if (c==null){
+                        oos.writeInt(-1);
+                        oos.flush();
+                    }
+                    else
+                    {
+                        Connection conn = null;
+                        conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cook_o_matic_bd","root","");
+                        // Comprovem que la taula existeix i no té comanda activa
+                        String update = "UPDATE taules SET `COMANDA_ACTIVA` = NULL WHERE TAULA_ID ="+t.taula_id;
+                        Statement stmt=conn.createStatement();  
+
+                        if (stmt.executeUpdate(update) > 0){
+                            oos.writeInt(0);
+                            oos.flush();
+                        }
+                        else{
+                            oos.writeInt(-1);
+                            oos.flush();
+                        }
+                    }
+                }
+            } catch (IOException ex) {
+                System.out.println(ex);
+            } catch (ClassNotFoundException ex) {
+                System.out.println(ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

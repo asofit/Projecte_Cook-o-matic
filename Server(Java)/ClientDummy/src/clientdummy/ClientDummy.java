@@ -34,19 +34,21 @@ public class ClientDummy {
 //            getTaules(oos, socket);
 
 //            getCarta(oos, socket);
-            getComanda(oos, socket);
+//            getComanda(oos, socket);
+//            createComanda(oos,socket);
+//            buidarTaula(oos,socket);
             
             oos.close();
 
         } catch (IOException ex) {
             System.out.println(ex);
         }
-        catch (ClassNotFoundException ex) {
-            Logger.getLogger(ClientDummy.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+//        catch (ClassNotFoundException ex) {
+//            Logger.getLogger(ClientDummy.class.getName()).log(Level.SEVERE, null, ex);
+//        } 
     }
 
-    private static void getTaules(ObjectOutputStream oos, Socket socket) throws ClassNotFoundException, IOException {
+    private static void getTaules(ObjectOutputStream oos, Socket socket) throws IOException, ClassNotFoundException {
         System.out.println("Escrivim opció");
         oos.writeInt(2);
         oos.flush();
@@ -110,7 +112,7 @@ public class ClientDummy {
         ois.close();
     }
 
-    private static void getCarta(ObjectOutputStream oos, Socket socket) throws ClassNotFoundException, IOException {
+    private static void getCarta(ObjectOutputStream oos, Socket socket) throws IOException, ClassNotFoundException {
         System.out.println("Escrivim opció");
         oos.writeInt(3);
         oos.flush();
@@ -159,7 +161,7 @@ public class ClientDummy {
         ois.close();
     }
     
-    private static void getComanda(ObjectOutputStream oos, Socket socket) throws ClassNotFoundException, IOException {
+    private static void getComanda(ObjectOutputStream oos, Socket socket) throws IOException, ClassNotFoundException {
         System.out.println("Escrivim opció");
         oos.writeInt(4);
         oos.flush();
@@ -196,4 +198,86 @@ public class ClientDummy {
         }
         ois.close();
     }
+
+    private static void createComanda(ObjectOutputStream oos, Socket socket) throws IOException {
+        System.out.println("Escrivim opció");
+        oos.writeInt(5);
+        oos.flush();
+        System.out.println("Comprovem si és correcte");
+        ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+        if (ois.readBoolean())
+        {
+            System.out.println("Anem a enviar sessió ");
+            oos.writeInt(1000);
+            oos.flush();
+            System.out.println("Anem a enviar taula ");
+            Taula t = new Taula();
+            t.taula_id = 6;
+            oos.writeObject(t);
+            oos.flush();
+            
+            ArrayList<LiniaComanda> linies = new ArrayList<LiniaComanda>();
+            for (int i = 1; i <= 5; i++){
+                LiniaComanda lc = new LiniaComanda();
+                lc.num =  i;
+                lc.quantitat = 3;
+                lc.codi_plat = i+6;
+                linies.add(lc);
+            }
+            
+            System.out.println("Anem a enviar total de línies ");
+            oos.writeInt(linies.size());
+            oos.flush();
+            System.out.println("Anem a enviar línies ");
+            oos.writeObject(linies);
+            oos.flush();
+            
+            System.out.println("Volem llegir dades");
+            int comandaId = ois.readInt();
+            if (comandaId > 0){
+                System.out.println("Hem llegit dades");
+                System.out.println(comandaId);
+            }
+            else{
+                System.out.println("Error");
+            }
+        }
+        else{
+            System.out.println("Error");
+        }
+        ois.close();
+    }
+
+    private static void buidarTaula(ObjectOutputStream oos, Socket socket) throws IOException {
+        System.out.println("Escrivim opció");
+        oos.writeInt(6);
+        oos.flush();
+        System.out.println("Comprovem si és correcte");
+        ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+        if (ois.readBoolean())
+        {
+            System.out.println("Anem a enviar sessió ");
+            oos.writeInt(1000);
+            oos.flush();
+            System.out.println("Anem a enviar taula ");
+            Taula t = new Taula();
+            t.taula_id = 6;
+            oos.writeObject(t);
+            oos.flush();            
+            
+            System.out.println("Volem llegir dades");
+            int result = ois.readInt();
+            if (result == 0){
+                System.out.println("Hem llegit dades");
+                System.out.println(result);
+            }
+            else{
+                System.out.println("Error");
+            }
+        }
+        else{
+            System.out.println("Error");
+        }
+        ois.close();
+    }    
 }
