@@ -13,9 +13,9 @@ namespace BD.Utilities
             DbContextOptionsBuilder optionBuilder
             )
         {
-            string db = "COOK_O_MATIC_BD";
+            string db = "dam2_sgomez1";
             optionBuilder.UseMySQL(
-                "Server=localhost;Database=" + db + ";UID=root;Password=");
+                "Server=51.68.224.27;Database=" + db + ";UID=dam2-sgomez1;Password=47107354L");
         }
     }
 }

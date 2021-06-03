@@ -94,6 +94,7 @@ public class Server {
                     Thread t = new Thread(new Runnable() {
                         @Override
                         public void run() {
+                            on=true;
                             startServer();
                         }
                     });
@@ -112,7 +113,7 @@ public class Server {
                     for (int i = 0; i < clients.size(); i++){
                         clients.get(i).interrupt();
                     }
-                    System.exit(0);
+//                    System.exit(0);
                 }
             }
         });
@@ -250,7 +251,7 @@ public class Server {
                 else{
                     Connection conn = null;
                     try{
-                        conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cook_o_matic_bd","root","");
+                        conn=DriverManager.getConnection("jdbc:mysql://51.68.224.27:3306/dam2_sgomez1","dam2-sgomez1","47107354L");
                         conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
                         Statement stmt=conn.createStatement();  
                         String query = "select * from cambrers where usuari='"+l.user+"' and contrasenya='"+l.password+"'";
@@ -308,7 +309,7 @@ public class Server {
                     {
                         Connection conn = null;
                         try{
-                            conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cook_o_matic_bd","root","");
+                            conn=DriverManager.getConnection("jdbc:mysql://51.68.224.27:3306/dam2_sgomez1","dam2-sgomez1","47107354L");
                             conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
                             Statement stmt=conn.createStatement();  
                             String query = "select t.*, (select count(lc.LINIA_COM_ID) from linies_comanda lc where lc.COMANDA = t.COMANDA_ACTIVA) as \"plats_totals\", (select count(lco.LINIA_COM_ID) from linies_comanda lco where lco.COMANDA = t.COMANDA_ACTIVA and lco.ESTAT='PREPARADA') as \"plats_preparats\", c.CAMBRER_ID as \"cambrer_id\", c.NOM as \"nom_cambrer\" from taules t left join cambrers c on c.CAMBRER_ID = (SELECT co.cambrer from comandes co where co.COMANDA_ID = t.COMANDA_ACTIVA)";
@@ -367,7 +368,7 @@ public class Server {
                     {
                         Connection conn = null;
                         try{
-                            conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cook_o_matic_bd","root","");
+                            conn=DriverManager.getConnection("jdbc:mysql://51.68.224.27:3306/dam2_sgomez1","dam2-sgomez1","47107354L");
                             conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
                             Statement stmt=conn.createStatement();  
                             String query = "select * from categories";
@@ -455,7 +456,7 @@ public class Server {
                     {
                         Connection conn = null;
                         try{
-                            conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cook_o_matic_bd","root","");
+                            conn=DriverManager.getConnection("jdbc:mysql://51.68.224.27:3306/dam2_sgomez1","dam2-sgomez1","47107354L");
                             conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
                             Statement stmt=conn.createStatement();  
                             String query = "SELECT * FROM linies_comanda where comanda="+comanda_id;
@@ -529,7 +530,7 @@ public class Server {
                     {
                         Connection conn = null;
                         try{
-                            conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cook_o_matic_bd","root","");
+                            conn=DriverManager.getConnection("jdbc:mysql://51.68.224.27:3306/dam2_sgomez1","dam2-sgomez1","47107354L");
                             conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
                             // Comprovem que la taula existeix i no té comanda activa
                             String query = "SELECT count(*) as taules FROM taules where comanda_activa IS NULL and taula_id="+t.taula_id;
@@ -618,7 +619,7 @@ public class Server {
                     else
                     {
                         Connection conn = null;
-                        conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cook_o_matic_bd","root","");
+                        conn=DriverManager.getConnection("jdbc:mysql://51.68.224.27:3306/dam2_sgomez1","dam2-sgomez1","47107354L");
                         conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
                         // Comprovem que la taula existeix i no té comanda activa
                         String update = "UPDATE taules SET `COMANDA_ACTIVA` = NULL WHERE TAULA_ID ="+t.taula_id;

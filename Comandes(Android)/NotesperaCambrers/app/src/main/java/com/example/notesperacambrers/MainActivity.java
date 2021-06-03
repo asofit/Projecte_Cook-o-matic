@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements TaulaAdapter.OnSe
     private RecyclerView rcvTaules;
     private TaulaAdapter mTaulaAdapter;
 
+    public boolean dialogObert = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements TaulaAdapter.OnSe
                             // ha acabat !! A més, aquest codi s'executa en el fil
                             // d'interfície gràfica.
                             if (taules != null && taules.size() > 0){
-                                mTaulaAdapter = new TaulaAdapter(this,session_id, taules);
+                                mTaulaAdapter = new TaulaAdapter(this,session_id, taules, this);
                                 rcvTaules.setAdapter(mTaulaAdapter);
                             }
                             else{
@@ -93,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements TaulaAdapter.OnSe
             }
         }
         else{
-            mTaulaAdapter = new TaulaAdapter(this,session_id, new ArrayList<Taula>());
+            mTaulaAdapter = new TaulaAdapter(this,session_id, new ArrayList<Taula>(), this);
             rcvTaules.setAdapter(mTaulaAdapter);
         }
     }

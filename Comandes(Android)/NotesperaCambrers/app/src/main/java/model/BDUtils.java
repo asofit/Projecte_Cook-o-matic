@@ -5,6 +5,7 @@ import android.util.Log;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Array;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -16,7 +17,11 @@ public class BDUtils {
 
     private static final int LOGIN = 1;
     private static final int GET_TAULES = 2;
+    private static final int GET_CARTA = 3;
     private static final int GET_COMANDA = 4;
+    private static final int BUIDAR_TAULA = 6;
+
+    public static ArrayList<Categoria> mCategories = null;
 
     public static Login login(String user, String password) {
         try {
@@ -131,6 +136,95 @@ public class BDUtils {
             Log.d("error",ex.getMessage());
         } catch (ClassNotFoundException e) {
             Log.d("error",e.getMessage());
+        }
+        return null;
+    }
+
+    public static boolean buidarTaula(int mSessioId, Taula t) {
+        try {
+            InetAddress host = InetAddress.getByName(HOST);
+            Socket socket = new Socket(host.getHostName(), PORT);
+            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+            System.out.println("Escrivim opció");
+            oos.writeInt(BUIDAR_TAULA);
+            oos.flush();
+            System.out.println("Comprovem si és correcte");
+            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+            if (ois.readBoolean()) {
+                System.out.println("Anem a enviar sessió ");
+                oos.writeInt(mSessioId);
+                oos.flush();
+                System.out.println("Anem a enviar taula ");
+                oos.writeObject(t);
+                oos.flush();
+
+                System.out.println("Volem llegir dades");
+                int result = ois.readInt();
+                if (result == 0) {
+                    System.out.println("Hem llegit dades");
+                    return true;
+                } else {
+                    System.out.println("Error");
+                }
+            } else {
+                System.out.println("Error");
+            }
+            ois.close();
+        } catch (IOException ex) {
+            Log.d("error", ex.getMessage());
+        }
+        return false;
+    }
+
+    public static ArrayList<Plat> getCarta(int sessionId) {
+        try {
+            InetAddress host = InetAddress.getByName(HOST);
+            Socket socket = new Socket(host.getHostName(), PORT);
+            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+            System.out.println("Escrivim opció");
+            oos.writeInt(GET_CARTA);
+            oos.flush();
+            System.out.println("Comprovem si és correcte");
+            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+            if (ois.readBoolean())
+            {
+                System.out.println("Anem a enviar dades ");
+                oos.writeInt(sessionId);
+                oos.flush();
+                System.out.println("Volem llegir dades");
+
+                int totalCategories = 0;
+                List<Categoria> categories = null;
+                totalCategories = ois.readInt();
+                mCategories = (ArrayList<Categoria>)ois.readObject();
+                if (mCategories != null){
+                    System.out.println("Hem llegit dades");
+                }
+                else{
+                    System.out.println("Error");
+                }
+
+                int totalPlats = 0;
+                ArrayList<Plat> plats = null;
+                totalPlats = ois.readInt();
+                plats = (ArrayList<Plat>)ois.readObject();
+                if (plats != null){
+                    System.out.println("Hem llegit dades");
+                    return plats;
+                }
+                else{
+                    System.out.println("Error");
+                }
+            }
+            else{
+                System.out.println("Error");
+                System.out.println(ois.readUTF());
+            }
+            ois.close();
+        } catch (IOException ex) {
+            Log.d("error", ex.getMessage());
+        } catch (ClassNotFoundException e) {
+            Log.d("error", e.getMessage());
         }
         return null;
     }

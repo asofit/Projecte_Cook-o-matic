@@ -36,7 +36,7 @@ namespace Carta_i_Mural.View
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            t = new Timer(2000);
+            t = new Timer(10000);
             t.Elapsed += StartTimerComandes;
             t.Start();
         }

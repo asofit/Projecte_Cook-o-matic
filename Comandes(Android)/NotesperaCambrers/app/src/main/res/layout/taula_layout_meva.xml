@@ -15,7 +15,7 @@
         android:id="@+id/txvCambrer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"></TextView>
+        android:gravity="center"></TextView>
     <ProgressBar
         android:id="@+id/pgbTaula"
         android:layout_width="match_parent"

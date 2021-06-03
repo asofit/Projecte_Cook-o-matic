@@ -1,6 +1,6 @@
 -- Creació de l'esquema, per si encara no el tenim o l'hem esborrat
-CREATE SCHEMA COOK_O_MATIC_BD;
-USE COOK_O_MATIC_BD;
+-- CREATE SCHEMA COOK_O_MATIC_BD;
+-- USE COOK_O_MATIC_BD;
 
 -- Primer creem les taules d'informació al voltant del plat
 -- Creem primer les tres taules amb dades estàtiques, que no tenen claus foranes

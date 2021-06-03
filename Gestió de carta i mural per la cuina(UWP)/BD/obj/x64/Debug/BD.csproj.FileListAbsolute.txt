@@ -75,3 +75,4 @@ D:\Documents\DAM2\Projecte\Projecte_Cook-o-matic\Gestió de carta i mural per la
 D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\BD\bin\x64\Debug\WinRTXamlToolkit\WinRTXamlToolkit.xr.xml
 D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\BD\bin\x64\Debug\WinRTXamlToolkit\Properties\WinRTXamlToolkit.rd.xml
 D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\BD\obj\x64\Debug\WinRTXamlToolkit.pri.xml
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\BD\obj\x64\Debug\BD.csprojAssemblyReference.cache
