@@ -9,6 +9,7 @@ import model.Cambrer;
 import model.Login;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.ByteArrayInputStream;
@@ -38,6 +39,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.border.Border;
 import model.Categoria;
 import model.LiniaComanda;
 import model.Plat;
@@ -60,17 +62,28 @@ public class Server {
     public static HashMap<Integer,Cambrer> sessionsActives  = new HashMap<Integer,Cambrer>();
     
     public Server() {
-        JFrame f = new JFrame();
-        JScrollPane s = new JScrollPane();
-        JPanel p = new JPanel();
-        
+        JFrame f = new JFrame("Servidor Comandes");
         t = new JTextArea();
         t.setEditable(false);
         t.setSize(4000,4000);
         t.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+        JScrollPane s = new JScrollPane(t);
+        Dimension listSize = new Dimension(400, 400);
+        s.setSize(listSize);
+        s.setMaximumSize(listSize);
+        s.setPreferredSize(listSize);
+        Border m1 = BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1);
+        Border m2 = BorderFactory.createEmptyBorder(0, 40, 5, 0);
+        Border m3 = BorderFactory.createCompoundBorder(m2, m1);
+
+        s.setBorder(m3);
         
-        s.add(t);
-        s.setBorder(BorderFactory.createEmptyBorder(200,200,200,200));
+        JPanel p = new JPanel();
+        
+        
+//        s.add(t);
+        s.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        s.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         
         JButton b = new JButton();
         b.setText("Iniciar");
@@ -112,7 +125,7 @@ public class Server {
         
         f.pack();
         f.setVisible(true);
-        f.setResizable(true);
+        f.setResizable(false);
         f.setLocationRelativeTo(null);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -238,6 +251,7 @@ public class Server {
                     Connection conn = null;
                     try{
                         conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cook_o_matic_bd","root","");
+                        conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
                         Statement stmt=conn.createStatement();  
                         String query = "select * from cambrers where usuari='"+l.user+"' and contrasenya='"+l.password+"'";
                         ResultSet rs=stmt.executeQuery(query);  
@@ -295,6 +309,7 @@ public class Server {
                         Connection conn = null;
                         try{
                             conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cook_o_matic_bd","root","");
+                            conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
                             Statement stmt=conn.createStatement();  
                             String query = "select t.*, (select count(lc.LINIA_COM_ID) from linies_comanda lc where lc.COMANDA = t.COMANDA_ACTIVA) as \"plats_totals\", (select count(lco.LINIA_COM_ID) from linies_comanda lco where lco.COMANDA = t.COMANDA_ACTIVA and lco.ESTAT='PREPARADA') as \"plats_preparats\", c.CAMBRER_ID as \"cambrer_id\", c.NOM as \"nom_cambrer\" from taules t left join cambrers c on c.CAMBRER_ID = (SELECT co.cambrer from comandes co where co.COMANDA_ID = t.COMANDA_ACTIVA)";
                             ResultSet rs=stmt.executeQuery(query);  
@@ -353,6 +368,7 @@ public class Server {
                         Connection conn = null;
                         try{
                             conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cook_o_matic_bd","root","");
+                            conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
                             Statement stmt=conn.createStatement();  
                             String query = "select * from categories";
                             ResultSet rs=stmt.executeQuery(query);  
@@ -440,6 +456,7 @@ public class Server {
                         Connection conn = null;
                         try{
                             conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cook_o_matic_bd","root","");
+                            conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
                             Statement stmt=conn.createStatement();  
                             String query = "SELECT * FROM linies_comanda where comanda="+comanda_id;
                             ResultSet rs=stmt.executeQuery(query);  
@@ -513,6 +530,7 @@ public class Server {
                         Connection conn = null;
                         try{
                             conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cook_o_matic_bd","root","");
+                            conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
                             // Comprovem que la taula existeix i no té comanda activa
                             String query = "SELECT count(*) as taules FROM taules where comanda_activa IS NULL and taula_id="+t.taula_id;
                             Statement stmt=conn.createStatement();  
@@ -601,6 +619,7 @@ public class Server {
                     {
                         Connection conn = null;
                         conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cook_o_matic_bd","root","");
+                        conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
                         // Comprovem que la taula existeix i no té comanda activa
                         String update = "UPDATE taules SET `COMANDA_ACTIVA` = NULL WHERE TAULA_ID ="+t.taula_id;
                         Statement stmt=conn.createStatement();  

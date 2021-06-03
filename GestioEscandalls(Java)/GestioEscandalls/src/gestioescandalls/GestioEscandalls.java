@@ -86,7 +86,7 @@ public class GestioEscandalls {
         eastFrame.setPreferredSize(listSize);
         
         Border m1 = BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1);
-        Border m2 = BorderFactory.createEmptyBorder(0, 40, 5, 0);// top,left,bottom,right);
+        Border m2 = BorderFactory.createEmptyBorder(0, 40, 5, 0);
         Border m3 = BorderFactory.createCompoundBorder(m2, m1);
 
         eastFrame.setBorder(m3);

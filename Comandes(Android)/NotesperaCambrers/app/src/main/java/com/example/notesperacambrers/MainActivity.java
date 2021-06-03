@@ -1,5 +1,6 @@
 package com.example.notesperacambrers;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -7,50 +8,98 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.GridView;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+import adapters.TaulaAdapter;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import model.BDUtils;
+import model.Login;
+import model.Taula;
+
+public class MainActivity extends AppCompatActivity implements TaulaAdapter.OnSelectedItemListener {
+
+    private int session_id;
+
+    private RecyclerView rcvTaules;
+    private TaulaAdapter mTaulaAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        rcvTaules = findViewById(R.id.rcvTaules);
+        rcvTaules.setLayoutManager(new GridLayoutManager(this,2,RecyclerView.VERTICAL,false));
+//        rcvTaules.setLayoutManager(new LinearLayoutManager(this));
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+        readSessionFromSp();
+
+
+    }
+
+    private void readSessionFromSp() {
+        SharedPreferences sp = getSharedPreferences("TAULES",MODE_PRIVATE);
+        session_id = sp.getInt("session",0);
+        Log.d("TAULES", String.valueOf(session_id));
+
+        getTaules();
+    }
+
+    public void getTaules() {
+        if (session_id > 0){
+            try{
+                // Crida assíncrona per descarregar el JSON
+                Observable.fromCallable(() -> {
+                    //---------------- START OF THREAD ------------------------------------
+                    // Això és el codi que s'executarà en un fil
+                    Log.d("TAULAADAPTER", "Observable");
+                    ArrayList<Taula> taules = BDUtils.getTaules(session_id);
+                    return taules;
+                    //--------------- END OF THREAD-------------------------------------
+                })
+                        .subscribeOn(Schedulers.io())
+                        .onErrorReturnItem(new ArrayList<Taula>())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe((taules) -> {
+                            //-------------  UI THREAD ---------------------------------------
+                            // El codi que tenim aquí s'executa només quan el fil
+                            // ha acabat !! A més, aquest codi s'executa en el fil
+                            // d'interfície gràfica.
+                            if (taules != null && taules.size() > 0){
+                                mTaulaAdapter = new TaulaAdapter(this,session_id, taules);
+                                rcvTaules.setAdapter(mTaulaAdapter);
+                            }
+                            else{
+                                Log.d("error", "null");
+                            }
+                            //-------------  END OF UI THREAD ---------------------------------------
+                        });
             }
-        });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            catch(Exception ex){
+                Log.e("error","ex.toString()");
+            }
         }
+        else{
+            mTaulaAdapter = new TaulaAdapter(this,session_id, new ArrayList<Taula>());
+            rcvTaules.setAdapter(mTaulaAdapter);
+        }
+    }
 
-        return super.onOptionsItemSelected(item);
+    @Override
+    public void onSelectedItem(Taula seleccionada) {
+        Log.d("TAULES", "selectedTaula");
     }
 }
