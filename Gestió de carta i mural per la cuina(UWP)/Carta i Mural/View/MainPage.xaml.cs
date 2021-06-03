@@ -43,6 +43,9 @@ namespace Carta_i_Mural.View
                     case "mural":
                         t = typeof(MuralPage);
                         break;
+                    case "report":
+                        t = typeof(Carta);
+                        break;
                     default:
                         t = typeof(MuralPage);
                         break;

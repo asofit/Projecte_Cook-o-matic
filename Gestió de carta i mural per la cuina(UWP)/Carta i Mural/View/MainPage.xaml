@@ -20,6 +20,11 @@
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8A9;"></FontIcon>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
+            <NavigationViewItem Tag="report" Content="Carta PDF">
+                <NavigationViewItem.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF0E3;"></FontIcon>
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
         </NavigationView.MenuItems>
         <Frame x:Name="frmPage" Background="Transparent"></Frame>
     </NavigationView>

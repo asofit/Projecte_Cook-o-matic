@@ -89,8 +89,8 @@ namespace BD.Model
         public static bool SavePlat(Plat p)
         {
 
-            bool inserted = PlatBD.Insert(p);
-            return inserted;
+            PlatBD.Insert(p);
+            return true;
         }
 
         public static int RemovePlat(Plat p)

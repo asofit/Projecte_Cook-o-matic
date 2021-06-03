@@ -157,6 +157,9 @@
     <AppxPackagedFile Include="C:\Users\Usuario\.nuget\packages\system.diagnostics.diagnosticsource\4.7.1\lib\netstandard1.3\System.Diagnostics.DiagnosticSource.dll">
       <PackagePath>System.Diagnostics.DiagnosticSource.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Usuario\.nuget\packages\system.drawing.common\5.0.2\lib\netstandard2.0\System.Drawing.Common.dll">
+      <PackagePath>System.Drawing.Common.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Usuario\.nuget\packages\system.runtime.compilerservices.unsafe\5.0.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll">
       <PackagePath>System.Runtime.CompilerServices.Unsafe.dll</PackagePath>
     </AppxPackagedFile>
@@ -249,6 +252,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina%28UWP%29\Carta i Mural\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina%28UWP%29\Carta i Mural\bin\x64\Debug\View\Carta.xbf">
+      <PackagePath>View\Carta.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina%28UWP%29\Carta i Mural\bin\x64\Debug\View\CartaPage.xbf">
       <PackagePath>View\CartaPage.xbf</PackagePath>

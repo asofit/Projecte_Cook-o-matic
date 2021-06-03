@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina%28UWP%29\Carta i Mural\bin\x64\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>F2D1D4F94C5D62E1CC162833F38460DC1A5299E0B64A0DD9EFDCD3FACCB738AF</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>CFBEE3EE158A18E97321D5C34363EF5228A6556DFE27F8B083BE90D3F055445E</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>52ccda93-3501-435a-b3fb-e76a6ba89769_1.0.0.0_x64__mdtdy63a0eab0</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>52ccda93-3501-435a-b3fb-e76a6ba89769_mdtdy63a0eab0!App</RegisteredUserModeAppID>
     <RegisteredPackageID>52ccda93-3501-435a-b3fb-e76a6ba89769</RegisteredPackageID>
@@ -30,13 +30,13 @@
     <AppXManifest Include="D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina%28UWP%29\Carta i Mural\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2021-05-24T19:35:10.444</Modified>
+      <Modified>2021-06-03T10:41:26.905</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina%28UWP%29\Carta i Mural\bin\x64\Debug\Carta i Mural.exe">
       <PackagePath>entrypoint\Carta i Mural.exe</PackagePath>
-      <Modified>2021-05-24T19:35:09.018</Modified>
+      <Modified>2021-06-03T10:41:23.626</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Usuario\.nuget\packages\bouncycastle.netcore\1.8.3\lib\netstandard2.0\BouncyCastle.Crypto.dll">
       <PackagePath>BouncyCastle.Crypto.dll</PackagePath>
@@ -210,6 +210,10 @@
       <PackagePath>System.Diagnostics.DiagnosticSource.dll</PackagePath>
       <Modified>2020-04-14T20:48:06.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Usuario\.nuget\packages\system.drawing.common\5.0.2\lib\netstandard2.0\System.Drawing.Common.dll">
+      <PackagePath>System.Drawing.Common.dll</PackagePath>
+      <Modified>2021-01-19T19:29:18.000</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Usuario\.nuget\packages\system.runtime.compilerservices.unsafe\5.0.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll">
       <PackagePath>System.Runtime.CompilerServices.Unsafe.dll</PackagePath>
       <Modified>2020-10-19T16:46:44.000</Modified>
@@ -244,7 +248,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina%28UWP%29\BD\bin\x64\Debug\BD.dll">
       <PackagePath>BD.dll</PackagePath>
-      <Modified>2021-05-24T19:35:07.441</Modified>
+      <Modified>2021-06-02T19:34:00.725</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Usuario\.nuget\packages\win2d.uwp\1.25.0\lib\uap10.0\Microsoft.Graphics.Canvas.winmd">
       <PackagePath>Microsoft.Graphics.Canvas.winmd</PackagePath>
@@ -326,43 +330,47 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina%28UWP%29\Carta i Mural\bin\x64\Debug\Carta i Mural.xr.xml">
       <PackagePath>Carta i Mural.xr.xml</PackagePath>
-      <Modified>2021-05-24T19:22:45.839</Modified>
+      <Modified>2021-06-02T19:34:06.792</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina%28UWP%29\Carta i Mural\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2021-05-24T19:27:33.205</Modified>
+      <Modified>2021-06-03T10:41:23.508</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina%28UWP%29\Carta i Mural\bin\x64\Debug\View\Carta.xbf">
+      <PackagePath>View\Carta.xbf</PackagePath>
+      <Modified>2021-06-03T10:41:23.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina%28UWP%29\Carta i Mural\bin\x64\Debug\View\CartaPage.xbf">
       <PackagePath>View\CartaPage.xbf</PackagePath>
-      <Modified>2021-05-24T19:27:33.206</Modified>
+      <Modified>2021-06-03T10:41:23.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina%28UWP%29\Carta i Mural\bin\x64\Debug\View\MainPage.xbf">
       <PackagePath>View\MainPage.xbf</PackagePath>
-      <Modified>2021-05-24T19:27:33.206</Modified>
+      <Modified>2021-06-03T10:41:23.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina%28UWP%29\Carta i Mural\bin\x64\Debug\View\MuralPage.xbf">
       <PackagePath>View\MuralPage.xbf</PackagePath>
-      <Modified>2021-05-24T19:27:33.206</Modified>
+      <Modified>2021-06-03T10:41:23.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina%28UWP%29\Carta i Mural\bin\x64\Debug\View\UILiniaComanda.xbf">
       <PackagePath>View\UILiniaComanda.xbf</PackagePath>
-      <Modified>2021-05-24T19:27:33.206</Modified>
+      <Modified>2021-06-03T10:41:23.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina%28UWP%29\Carta i Mural\bin\x64\Debug\View\UICategoria.xbf">
       <PackagePath>View\UICategoria.xbf</PackagePath>
-      <Modified>2021-05-24T19:27:33.206</Modified>
+      <Modified>2021-06-03T10:41:23.509</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina%28UWP%29\Carta i Mural\bin\x64\Debug\View\UIComanda.xbf">
       <PackagePath>View\UIComanda.xbf</PackagePath>
-      <Modified>2021-05-24T19:27:33.206</Modified>
+      <Modified>2021-06-03T10:41:23.509</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina%28UWP%29\Carta i Mural\bin\x64\Debug\View\UIPlat.xbf">
       <PackagePath>View\UIPlat.xbf</PackagePath>
-      <Modified>2021-05-24T19:27:33.206</Modified>
+      <Modified>2021-06-03T10:41:23.509</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina%28UWP%29\Carta i Mural\bin\x64\Debug\View\UIPlatForm.xbf">
       <PackagePath>View\UIPlatForm.xbf</PackagePath>
-      <Modified>2021-05-24T19:27:33.206</Modified>
+      <Modified>2021-06-03T10:41:23.509</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.18362.0\\redist\Debug\X64\ucrtbased.dll">
       <PackagePath>ucrtbased.dll</PackagePath>
@@ -378,11 +386,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina%28UWP%29\Carta i Mural\bin\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2021-05-24T15:40:34.319</Modified>
+      <Modified>2021-06-02T19:34:09.100</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina%28UWP%29\Carta i Mural\bin\x64\Debug\Core\Carta i Mural.exe">
       <PackagePath>Carta i Mural.exe</PackagePath>
-      <Modified>2021-05-24T19:35:10.440</Modified>
+      <Modified>2021-06-03T10:41:26.899</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

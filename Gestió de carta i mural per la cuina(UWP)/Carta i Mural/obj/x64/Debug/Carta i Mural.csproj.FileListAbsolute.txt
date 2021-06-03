@@ -557,3 +557,10 @@ D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mu
 D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\UILiniaComanda.xaml
 D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\UILiniaComanda.xbf
 D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\bin\x64\Debug\View\UILiniaComanda.xbf
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\Carta.g.i.cs
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\Carta.g.cs
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\Carta.xaml
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\View\Carta.xbf
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\bin\x64\Debug\View\Carta.xbf
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\bin\x64\Debug\System.Drawing.Common.dll
+D:\Documents\DAM2\Projecte\Gestió de carta i mural per la cuina(UWP)\Carta i Mural\obj\x64\Debug\FxResources.System.Drawing.Common.SR.resw

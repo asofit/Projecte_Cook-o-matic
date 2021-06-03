@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ece5ec59-2e22-4fdd-933b-1f10d6ab3fac">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/Carta/carta"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver/services/repository"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" whenResourceMissingType="Empty" uuid="15c5d5ff-44d3-469e-9e9b-431b767dade2">
+		<parameter name="PLAT" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+     linies_escandall.`PLAT` AS linies_escandall_PLAT,
+     linies_escandall.`LINIA_ESC_ID` AS linies_escandall_LINIA_ESC_ID,
+     linies_escandall.`QUANTITAT` AS linies_escandall_QUANTITAT,
+     unitats.`NOM` AS unitats_NOM,
+     ingredients.`NOM` AS ingredients_NOM
+FROM
+     `unitats` unitats INNER JOIN `linies_escandall` linies_escandall ON unitats.`UNITAT_ID` = linies_escandall.`UNITAT`
+     INNER JOIN `ingredients` ingredients ON linies_escandall.`INGREDIENT` = ingredients.`INGREDIENT_ID`]]>
+		</queryString>
+		<field name="linies_escandall_PLAT" class="java.lang.Integer"/>
+		<field name="linies_escandall_LINIA_ESC_ID" class="java.lang.Integer"/>
+		<field name="linies_escandall_QUANTITAT" class="java.lang.Integer"/>
+		<field name="unitats_NOM" class="java.lang.String"/>
+		<field name="ingredients_NOM" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="Categoria" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     p.`PLAT_ID` AS PLAT_ID,
+     p.`NOM` AS NOM,
+     p.`DESCRIPCIO_MD` AS DESCRIPCIO_MD,
+     p.`PREU` AS PREU,
+     p.`FOTO` AS FOTO,
+     p.`DISPONIBLE` AS DISPONIBLE,
+     c.`NOM` AS CATEGORIA
+FROM
+     `plats` p JOIN `categories` c ON c.CATEGORIA_ID = p.CATEGORIA
+WHERE $P{Categoria} IS NULL or c.CATEGORIA_ID = $P{Categoria}]]>
+	</queryString>
+	<field name="PLAT_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESCRIPCIO_MD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PREU" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FOTO" class="java.lang.Object">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DISPONIBLE" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CATEGORIA" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="0" y="0" width="124" height="79" uuid="42dcff95-1e0b-4744-a31c-b02c9d60544f"/>
+				<imageExpression><![CDATA["repo:descarga.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="203" y="13" width="321" height="51" uuid="a2e74f56-7718-424b-96d6-f319481082ac"/>
+				<textElement textAlignment="Center">
+					<font size="40" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cook-O-Matic]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="34" uuid="52c0e620-1c0c-4630-a604-c537679acf3c"/>
+				<textElement>
+					<font size="16" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Categoria}==null ? "": $F{CATEGORIA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="142" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="20" width="100" height="41" uuid="9e6452bb-752b-44bb-bd8d-b8b77d19bdb9"/>
+				<textFieldExpression><![CDATA[$F{PLAT_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="20" width="100" height="41" uuid="6ccbd356-0a7c-418f-bff0-10763bcdf974"/>
+				<textFieldExpression><![CDATA[$F{NOM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="20" width="100" height="41" uuid="618cb869-fc51-46f5-af00-08f4d3771048"/>
+				<textFieldExpression><![CDATA[$F{DISPONIBLE} == true ? "Sí": "No"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="400" y="0" width="100" height="20" uuid="8fb0bee7-8d5e-4401-9d5c-bc13a3e1d34d"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Disponible]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="0" width="100" height="20" uuid="ce66e7ce-38d1-4655-b6df-017733dc70be"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Preu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="100" height="20" uuid="42f5b2ea-cb90-4644-bd11-50e2f8e4acb4">
+					<printWhenExpression><![CDATA[$F{DESCRIPCIO_MD} != null && $F{DESCRIPCIO_MD}.length() > 0]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripció]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="100" height="20" uuid="4c85a59c-985e-46f5-ad07-096fb0e0d40a"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nom]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="341bcb8c-b8c7-4fbe-9491-23c7279cfaef"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="200" y="20" width="100" height="41" uuid="37b09b6b-bf70-49b2-ba12-d9cb11745636"/>
+				<textFieldExpression><![CDATA[$F{DESCRIPCIO_MD} != null?  $F{DESCRIPCIO_MD}: ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="20" width="100" height="41" uuid="37f04e07-3677-4624-96c2-be9dadd8c315"/>
+				<textFieldExpression><![CDATA[$F{PREU}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="34" width="100" height="20" uuid="49c1b0b9-fb62-4aff-acc2-bfdc0686e81d"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="34" width="80" height="20" uuid="886b647a-80b2-4f82-a301-508e01f236dd"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="34" width="40" height="20" uuid="5f1127b3-b0cb-4d34-ad3a-94dcd5e22ae4"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

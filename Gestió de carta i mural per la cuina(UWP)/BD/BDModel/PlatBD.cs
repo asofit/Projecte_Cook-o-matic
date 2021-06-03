@@ -66,9 +66,9 @@ namespace BD.BDModel
             }
         }
 
-        public async static bool Insert(Plat p)
+        public async static void Insert(Plat p)
         {
-            if (p == null) return false;
+            if (p == null) return;
             DbTransaction trans = null;
             try
             {
@@ -119,12 +119,12 @@ namespace BD.BDModel
                             if (affectedPlats != 1)
                             {
                                 trans.Rollback();
-                                return false;
+                                return ;
                             }
                             else
                             {
                                 trans.Commit();
-                                return true;
+                                return ;
                             }
                         }
                     }
@@ -132,7 +132,7 @@ namespace BD.BDModel
             }
             catch (Exception ex)
             {
-                return false;
+                return ;
             }
         }
 
