@@ -29,7 +29,7 @@ namespace Carta_i_Mural.View
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            webView.Source = new Uri("http://localhost:8080/jasperserver/flow.html?_flowId=viewReportFlow&standAlone=true&_flowId=viewReportFlow&ParentFolderUri=%2Freports%2FCarta&reportUnit=%2Freports%2FCarta%2Fcarta");
+            webView.Source = new Uri("http://51.68.224.27:8080/jasperserver/flow.html?_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Fdam2-sgomez1&reportUnit=%2Fdam2-sgomez1%2FCarta&standAlone=true");
         }
     }
 }
