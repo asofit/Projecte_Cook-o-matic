@@ -31,6 +31,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -58,7 +59,7 @@ public class Server {
 
     public static JTextArea t;
     
-    private List<Client> clients = new ArrayList<Client>();
+    public List<Client> clients = new ArrayList<Client>();
     public static HashMap<Integer,Cambrer> sessionsActives  = new HashMap<Integer,Cambrer>();
     
     public Server() {
@@ -232,6 +233,7 @@ public class Server {
                 ois.close();
                 oos.close();
                 s.close();
+                clients.remove(this);
                 super.interrupt();
             } catch (IOException ex) {
                 System.out.println(ex);
@@ -566,6 +568,7 @@ public class Server {
                                         
                                         // Hem insertat la comanda, anem a insertar-ne les línies
                                         for (LiniaComanda lc : linies){
+                                            System.out.println(lc);
                                             insert = "INSERT INTO linies_comanda(`COMANDA`, `LINIA_COM_ID`, `PLAT`, `QUANTITAT`, `ESTAT`) VALUES ("+newComandaId+", "+lc.num+", "+lc.codi_plat+", "+lc.quantitat+", '"+"EN_PREPARACIO"+"')";
                                             stmt=conn.createStatement();  
                                             stmt.executeUpdate(insert);
@@ -643,5 +646,39 @@ public class Server {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+
+        @Override
+        public int hashCode() {
+            int hash = 5;
+            hash = 53 * hash + Objects.hashCode(this.s);
+            hash = 53 * hash + Objects.hashCode(this.ois);
+            hash = 53 * hash + Objects.hashCode(this.oos);
+            return hash;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null) {
+                return false;
+            }
+            if (getClass() != obj.getClass()) {
+                return false;
+            }
+            final Client other = (Client) obj;
+            if (!Objects.equals(this.s, other.s)) {
+                return false;
+            }
+            if (!Objects.equals(this.ois, other.ois)) {
+                return false;
+            }
+            if (!Objects.equals(this.oos, other.oos)) {
+                return false;
+            }
+            return true;
+        }
+        
     }
 }

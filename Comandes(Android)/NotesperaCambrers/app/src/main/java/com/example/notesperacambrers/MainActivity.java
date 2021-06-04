@@ -48,8 +48,6 @@ public class MainActivity extends AppCompatActivity implements TaulaAdapter.OnSe
 //        rcvTaules.setLayoutManager(new LinearLayoutManager(this));
 
         readSessionFromSp();
-
-
     }
 
     private void readSessionFromSp() {

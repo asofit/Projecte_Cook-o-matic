@@ -62,14 +62,16 @@ public class PlatAdapter extends RecyclerView.Adapter<PlatAdapter.ViewHolder>{
             holder.btnRemovePlat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    for (LiniaComanda lc: ((PresaComandes)mParentActivity).mComanda) {
-                        if (lc.codi_plat == p.getCodi()){
-                            lc.quantitat--;
-                            if (lc.quantitat <= 0){
-                                ((PresaComandes)mParentActivity).mComanda.remove(lc);
+                    if (((PresaComandes)mParentActivity).mComanda != null){
+                        for (LiniaComanda lc: ((PresaComandes)mParentActivity).mComanda) {
+                            if (lc.codi_plat == p.getCodi()){
+                                lc.quantitat--;
+                                if (lc.quantitat <= 0){
+                                    ((PresaComandes)mParentActivity).mComanda.remove(lc);
+                                }
+                                ((PresaComandes)mParentActivity).refreshComanda();
+                                break;
                             }
-                            ((PresaComandes)mParentActivity).refreshComanda();
-                            break;
                         }
                     }
                 }
@@ -89,7 +91,7 @@ public class PlatAdapter extends RecyclerView.Adapter<PlatAdapter.ViewHolder>{
                     if(!added){
                         int numLinia = 1;
                         for (LiniaComanda lc: ((PresaComandes)mParentActivity).mComanda) {
-                            if (lc.num > numLinia){
+                            if (lc.num >= numLinia){
                                 numLinia = lc.num+1;
                             }
                         }

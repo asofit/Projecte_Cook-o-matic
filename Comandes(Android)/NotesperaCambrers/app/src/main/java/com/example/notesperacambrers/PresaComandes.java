@@ -1,5 +1,6 @@
 package com.example.notesperacambrers;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +12,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
@@ -25,24 +28,27 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import model.BDUtils;
+import model.Categoria;
 import model.LiniaComanda;
 import model.Plat;
 import model.Taula;
 
-public class PresaComandes extends AppCompatActivity implements PlatAdapter.OnSelectedItemListener, LiniaComandaAdapter.OnSelectedItemListener {
+public class PresaComandes extends AppCompatActivity implements PlatAdapter.OnSelectedItemListener, LiniaComandaAdapter.OnSelectedItemListener{
 
     private RecyclerView rcvPlats;
     private RecyclerView rcvLinies;
     private PlatAdapter mCartaAdapter;
     private LiniaComandaAdapter mComandaAdapter;
+//    private ArrayAdapter mSpinnerCategoriesAdapter;
 
     private int mComandaId = -1;
     private int mSessionId = 0;
+    private int mTaula;
     private boolean mNewComanda = true;
     public ArrayList<LiniaComanda> mComanda;
     private ArrayList<Plat> mCarta;
 
-    private Spinner spnCategories;
+//    private Spinner spnCategories;
     private Button btnConfirm;
     private TextView txvTotal;
 
@@ -56,9 +62,10 @@ public class PresaComandes extends AppCompatActivity implements PlatAdapter.OnSe
         if(b != null){
             mComandaId = b.getInt("comanda");
             Log.d("PRESACOMANDES",mComandaId+"");
+            mNewComanda = (mComandaId <= 0);
             mSessionId = b.getInt("session");
             Log.d("PRESACOMANDES",mSessionId+"");
-            mNewComanda = (mComandaId <= 0);
+            mTaula = b.getInt("taula");
         }
 
         txvTotal = findViewById(R.id.txvTotal);
@@ -70,7 +77,14 @@ public class PresaComandes extends AppCompatActivity implements PlatAdapter.OnSe
                 moveToMain();
             }
         });
-        spnCategories= findViewById(R.id.spnCategories);
+
+//        spnCategories= findViewById(R.id.spnCategories);
+//        spnCategories.setOnItemSelectedListener(this);
+//
+//        //Creating the ArrayAdapter instance having the categories list
+//        mSpinnerCategoriesAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,BDUtils.mCategories);
+//        mSpinnerCategoriesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         rcvPlats = findViewById(R.id.rcvPlats);
         rcvPlats.setLayoutManager(new GridLayoutManager(this,3,RecyclerView.VERTICAL,false));
         rcvLinies = findViewById(R.id.rcvLinies);
@@ -176,62 +190,7 @@ public class PresaComandes extends AppCompatActivity implements PlatAdapter.OnSe
                                 mCartaAdapter = new PlatAdapter(this,mSessionId, mCarta, this, mNewComanda);
                                 rcvPlats.setAdapter(mCartaAdapter);
                                 refreshComanda();
-//                                spnCategories.setAdapter(new SpinnerAdapter() {
-//                                    @Override
-//                                    public View getDropDownView(int position, View convertView, ViewGroup parent) {
-//                                        return null;
-//                                    }
-//
-//                                    @Override
-//                                    public void registerDataSetObserver(DataSetObserver observer) {
-//
-//                                    }
-//
-//                                    @Override
-//                                    public void unregisterDataSetObserver(DataSetObserver observer) {
-//
-//                                    }
-//
-//                                    @Override
-//                                    public int getCount() {
-//                                        return 0;
-//                                    }
-//
-//                                    @Override
-//                                    public Object getItem(int position) {
-//                                        return null;
-//                                    }
-//
-//                                    @Override
-//                                    public long getItemId(int position) {
-//                                        return 0;
-//                                    }
-//
-//                                    @Override
-//                                    public boolean hasStableIds() {
-//                                        return false;
-//                                    }
-//
-//                                    @Override
-//                                    public View getView(int position, View convertView, ViewGroup parent) {
-//                                        return null;
-//                                    }
-//
-//                                    @Override
-//                                    public int getItemViewType(int position) {
-//                                        return 0;
-//                                    }
-//
-//                                    @Override
-//                                    public int getViewTypeCount() {
-//                                        return 0;
-//                                    }
-//
-//                                    @Override
-//                                    public boolean isEmpty() {
-//                                        return false;
-//                                    }
-//                                });
+//                                spnCategories.setAdapter(mSpinnerCategoriesAdapter);
                             }
                             else{
                                 Log.d("error", "null");
@@ -251,8 +210,49 @@ public class PresaComandes extends AppCompatActivity implements PlatAdapter.OnSe
     }
 
     private void moveToMain() {
-        Intent mainIntent = new Intent(this, MainActivity.class);
-        startActivity(mainIntent);
+        if(mNewComanda){
+            if (mSessionId > 0){
+                try{
+                    // Crida assíncrona
+                    Observable.fromCallable(() -> {
+                        //---------------- START OF THREAD ------------------------------------
+                        // Això és el codi que s'executarà en un fil
+                        Log.d("PRESACOMANDES", "Observable");
+                        boolean added = BDUtils.createComanda(mSessionId,mTaula,mComanda);
+                        return added;
+                        //--------------- END OF THREAD-------------------------------------
+                    })
+                            .subscribeOn(Schedulers.io())
+                            .onErrorReturnItem(false)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe((added) -> {
+                                //-------------  UI THREAD ---------------------------------------
+                                // El codi que tenim aquí s'executa només quan el fil
+                                // ha acabat !! A més, aquest codi s'executa en el fil
+                                // d'interfície gràfica.
+                                if (added){
+                                    Intent mainIntent = new Intent(this, MainActivity.class);
+                                    startActivity(mainIntent);
+                                }
+                                else{
+                                    Log.d("error", "null");
+                                }
+                                //-------------  END OF UI THREAD ---------------------------------------
+                            });
+                }
+                catch(Exception ex){
+                    Log.e("error","ex.toString()");
+                }
+            }
+            else{
+                Intent mainIntent = new Intent(this, MainActivity.class);
+                startActivity(mainIntent);
+            }
+        }
+        else{
+            Intent mainIntent = new Intent(this, MainActivity.class);
+            startActivity(mainIntent);
+        }
     }
 
     @Override

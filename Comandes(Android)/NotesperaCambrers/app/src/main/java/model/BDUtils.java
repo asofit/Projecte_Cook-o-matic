@@ -19,6 +19,7 @@ public class BDUtils {
     private static final int GET_TAULES = 2;
     private static final int GET_CARTA = 3;
     private static final int GET_COMANDA = 4;
+    private static final int CREATE_COMANDA = 5;
     private static final int BUIDAR_TAULA = 6;
 
     public static ArrayList<Categoria> mCategories = null;
@@ -227,5 +228,51 @@ public class BDUtils {
             Log.d("error", e.getMessage());
         }
         return null;
+    }
+
+    public static boolean createComanda(int sessionId, int taulaId, ArrayList<LiniaComanda> comanda) {
+        try {
+            InetAddress host = InetAddress.getByName(HOST);
+            Socket socket = new Socket(host.getHostName(), PORT);
+            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+            System.out.println("Escrivim opció");
+            oos.writeInt(CREATE_COMANDA);
+            oos.flush();
+            System.out.println("Comprovem si és correcte");
+            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+            if (ois.readBoolean()) {
+                System.out.println("Anem a enviar sessió ");
+                oos.writeInt(sessionId);
+                oos.flush();
+                System.out.println("Anem a enviar taula ");
+                Taula t = new Taula();
+                t.taula_id = taulaId;
+                oos.writeObject(t);
+                oos.flush();
+
+                System.out.println("Anem a enviar total de línies ");
+                oos.writeInt(comanda.size());
+                oos.flush();
+                System.out.println("Anem a enviar línies ");
+                oos.writeObject(comanda);
+                oos.flush();
+
+                System.out.println("Volem llegir dades");
+                int comandaId = ois.readInt();
+                if (comandaId > 0) {
+                    System.out.println("Hem llegit dades");
+                    return true;
+                } else {
+                    System.out.println("Error");
+                    Log.d("error",comandaId+"");
+                }
+            } else {
+                System.out.println("Error");
+            }
+            ois.close();
+        }catch (IOException ex) {
+            Log.d("error", ex.getMessage());
+        }
+        return false;
     }
 }

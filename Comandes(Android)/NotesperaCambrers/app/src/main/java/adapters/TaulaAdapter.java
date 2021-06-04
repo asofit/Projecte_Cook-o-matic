@@ -194,6 +194,8 @@ public class TaulaAdapter extends RecyclerView.Adapter<TaulaAdapter.ViewHolder> 
         Bundle b = new Bundle();
         b.putInt("comanda", comandaId);
         b.putInt("session", mSessioId);
+        int taulaId = mTaules.get(idxTaulaSeleccionada).taula_id;
+        b.putInt("taula", taulaId);
         comandesIntent.putExtras(b);
         mParentActivity.startActivity(comandesIntent);
     }
